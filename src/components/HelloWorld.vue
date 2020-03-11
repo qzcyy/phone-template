@@ -19,9 +19,12 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
+    <h3 class="test">Ecosystem</h3>
+    <van-button type="default">默认按钮</van-button>
+    <van-button type="danger">危险按钮</van-button>
+    <van-button plain hairline type="primary">细边框按钮</van-button>
+    <ul class="color">
+      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener" class="color">vue-router</a></li>
       <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
@@ -31,6 +34,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'HelloWorld',
   props: {
