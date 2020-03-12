@@ -1,0 +1,10 @@
+.vin-search-list{
+  overflow: auto;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  top: 54px;
+  .van-cell__title{
+    text-align: left;
+  }
+}
