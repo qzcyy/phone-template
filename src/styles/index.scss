@@ -1,6 +1,32 @@
-body{
+@import './variables.scss';
+h1,h2,h3,h4,h5,p{
+  padding: 0;
+  margin: 0;
+}
+html,body,.mainCon{
   height: 100%;
+  font-family:PingFangSC-Medium,PingFang SC;
+  .van-nav-bar{
+    z-index: 999;
+  }
+}
+.color-orange{
+  color: $orange;
+}
+.mainCon{
+  background:rgba(244,245,247,1);
 }
 .innerCon{
-  height: 100%;
+  position: absolute;
+  top: $navbarHeight;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+.con-block{
+  margin: 10px;
+  padding: 15px 10px;
+  background:rgba(255,255,255,1);
+  border-radius:5px;
 }

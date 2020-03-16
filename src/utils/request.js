@@ -12,13 +12,18 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_API // 配置接口地址
 
 // POST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((conf) => {
-  const paramsUrl = Object.keys(conf.data).sort().reduce((total, item) => {
-    if (typeof conf.data[item] === 'object') {
-      return total + JSON.stringify(conf.data[item])
-    } else {
-      return total + item + conf.data[item]
-    }
-  })
+  let paramsUrl
+  if (!Object.keys(conf.data).length) {
+    paramsUrl = ''
+  } else {
+    paramsUrl = Object.keys(conf.data).sort().reduce((total, item) => {
+      if (typeof conf.data[item] === 'object') {
+        return total + JSON.stringify(conf.data[item])
+      } else {
+        return total + item + conf.data[item]
+      }
+    }, '')
+  }
   if (['post', 'POST', 'put', 'PUT'].indexOf(conf.method) > -1) {
     conf.data = qs.stringify(conf.data)
   }

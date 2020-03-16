@@ -1,82 +1,56 @@
 <template>
-  <div class="car-owner-model">
-    <div class="car-owner-model-header">
-      <a class="model-item" @click="changeStep('brand',true)">
-        <img v-if="brandData.logo" class="model-item-title " :src="brandData.logo">
-        <span v-else class="model-item-title brand"></span>
-        <span class="model-item-msg">{{brandData.brand||'选择品牌'}}</span>
-      </a>
-      <a class="model-item" @click="changeStep('system',true)">
-        <span class="model-item-title carSys" :class="{'no-check':step!=='system'}"></span>
-        <span class="model-item-msg">{{systemData||'选择车系'}}</span>
-      </a>
-      <a class="model-item">
-        <span class="model-item-title model" :class="{'no-check':step!=='model'}"></span>
-        <span class="model-item-msg">选择车型</span>
-      </a>
-    </div>
-    <div class="car-owner-model-main">
-      <brandSelect v-if="step==='brand'" @brandDone="changeStep('system')"></brandSelect>
-      <sysSelect v-if="step==='system'" @sysDone="changeStep('model')"></sysSelect>
-      <modelSelect v-if="step==='model'" @modelDone="done"></modelSelect>
+  <div class="mainCon">
+    <NavBar :on-click-left="()=>$router.push('/home')" >
+      <van-icon name="filter-o" slot="right" size="20" @click="$refs.step3.showDicSearch=true"/>
+    </NavBar>
+    <div class="carModel innerCon">
+      <selectCarModelStep1 v-show="step===1" @changeStep="changeStep" />
+      <selectCarModelStep2 v-show="step===2" @changeStep="changeStep" />
+      <selectCarModelStep3 ref="step3" v-show="step===3" @changeStep="changeStep" />
     </div>
   </div>
+
 </template>
 <script>
-import '../../assets/sass/carOwner.scss'
-import brandSelect from './components/brandSelect.vue'
-import sysSelect from './components/systemSelect.vue'
-import modelSelect from './components/modelSelect.vue'
-import { mapState } from 'vuex'
+import selectCarModelStep1 from './components/selectCarModelStep1.vue'
+import selectCarModelStep2 from './components/selectCarModelStep2.vue'
+import selectCarModelStep3 from './components/selectCarModelStep3.vue'
+import '@/styles/carModel.scss'
 export default {
   components: {
-    brandSelect,
-    sysSelect,
-    modelSelect
+    selectCarModelStep1,
+    selectCarModelStep2,
+    selectCarModelStep3
   },
-  computed: {
-    ...mapState({
-      brandData: (state) => state.carModel.brandData,
-      systemData: (state) => state.carModel.systemData
-    })
-  },
-  data () {
+  data() {
     return {
-      step: 'brand'
+      step: 1
     }
+  },
+  mounted() {
+    this.queryCarBrandList()
   },
   methods: {
-    done () {
-      if (this.$route.query.redirectUrl) {
-        this.$router.push(this.$route.query.redirectUrl)
-      } else {
-        this.$router.push({ name: 'carOwnerEditCar' })
+    changeStep(step) {
+      this.step = step
+      switch (step) {
+        case 1:
+          this.$store.commit('carModel/CLEAN_MODEL')
+          this.$store.commit('carModel/CLEAN_FACTORY')
+          this.$store.commit('carModel/CLEAN_SERIES')
+          break
       }
     },
-    changeStep (step, isTab) {
-      if (step === 'brand') {
-        if (isTab) {
-          this.$store.commit('carModel/CLEAR_BRAND')
-          this.$store.commit('carModel/CLEAR_SYS')
-          this.$store.commit('carModel/CLEAR_MODEL')
-        }
-        this.step = step
-      }
-      if (step === 'system' && this.brandData.brand) {
-        if (isTab) {
-          this.$store.commit('carModel/CLEAR_SYS')
-        }
-        this.step = step
-      }
-      if (step === 'model' && this.systemData) {
-        this.step = step
-      }
+    queryCarBrandList() {
+      this.$toast.loading({
+        duration: 0, // 持续展示 toast
+        forbidClick: true,
+        message: '加载中'
+      })
+      this.$store.dispatch('carModel/queryCarBrandList', {}).then(res => {
+        this.$toast.clear()
+      })
     }
-  },
-  mounted(){
-    this.$store.commit('carModel/CLEAR_BRAND')
-    this.$store.commit('carModel/CLEAR_SYS')
-    this.$store.commit('carModel/CLEAR_MODEL')
   }
 }
 </script>

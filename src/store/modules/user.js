@@ -1,6 +1,5 @@
 import { login } from '@/api/user'
 const APP_ID = process.env.VUE_APP_APP_ID
-console.log(process.env)
 
 const state = {
   userId: localStorage.getItem('userId'),
@@ -20,7 +19,6 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { accountName, password } = userInfo
-    console.log(process.env.APP_ID)
     return new Promise((resolve, reject) => {
       login({ accountName: accountName.trim(), password: password, type: 1, appID: APP_ID }).then(response => {
         const { userName, userID } = response
@@ -37,9 +35,10 @@ const actions = {
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      commit('SET_TOKEN', '')
-      commit('SET_NAME', '')
-      commit('SET_PERMISSION', '')
+      commit('SET_USERID', '')
+      commit('SET_USER_NAME', '')
+      localStorage.setItem('name', '')
+      localStorage.setItem('userId', '')
       resolve()
     })
   }

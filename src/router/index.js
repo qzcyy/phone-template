@@ -28,8 +28,8 @@ const router = new Router({
     name: 'carModel',
     meta: {
       title: '选择车型'
-    }
-    // component: () => import('../views/carModel/carModel.vue')
+    },
+    component: () => import('../views/carModel/carModel.vue')
   }, {
     path: '/login',
     name: 'login',

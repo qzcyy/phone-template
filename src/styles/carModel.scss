@@ -1,0 +1,140 @@
+@import './variables.scss';
+
+.carModel{
+  .search-opr{
+    bottom: 0;
+    position: fixed;
+    height: 49px;
+    width: 100%;
+    display: flex;
+    .search-opr-btn-light{
+      width: 50%;
+      height: 49px;
+      display: block;
+      font-size:15px;
+      font-weight:500;
+      color:rgba(63,144,247,1);
+      background:rgba(234,243,255,1);
+      line-height:49px;
+      text-align: center;
+    }
+    .search-opr-btn-dark{
+      width: 50%;
+      height: 49px;
+      display: block;
+      font-size:15px;
+      font-weight:500;
+      background:rgba(63,144,247,1);
+      color:rgba(255,255,255,1);
+      line-height:49px;
+      text-align: center;
+    }
+  }
+  .right-search{
+    padding-top: 20px;
+    background-color: #fff;
+    &.hasBtn{
+      overflow-y: auto;
+      height: calc(100% - 70px);
+    }
+    .right-search-item{
+      .right-search-item-title{
+        height:17px;
+        font-size:12px;
+        font-weight:400;
+        color:rgba(51,51,51,1);
+        line-height:17px;
+        margin: 6px 10px;
+      }
+      .right-search-item-search{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        >a{
+          margin: 6px;
+          width:85px;
+          text-align: center;
+          line-height: 44px;
+          height:44px;
+          background:rgba(244,245,247,1);
+          border-radius:5px;
+          color:rgba(51,51,51,1);
+          font-size:12px;
+          font-weight:400;
+          display: block;
+          &.selected{
+            background:rgba(234,243,255,1);
+            color:rgba(63,144,247,1);
+          }
+        }
+      }
+    }
+  }
+  .carModel-list{
+    position: absolute;
+    overflow: auto;
+    top: 102px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &.list-2{
+      top: 50px;
+      .con-block{
+        padding-left: 10px;
+      }
+    }
+    .carModel-list-title{
+      background:rgba(255,255,255,1);
+      border-radius:5px;
+      padding-bottom: 8px;
+      font-size:15px;
+      font-weight:500;
+      color:rgba(51,51,51,1);
+      height: 20px;
+      line-height: 20px;
+    }
+    .carModel-list-msg{
+      margin-bottom: 5px;
+      font-size:12px;
+      font-weight:500;
+      color: #999999;
+      line-height:17px;
+      margin-right: 5px;
+    }
+  }
+  .carModel-select{
+    background:$light-gray;
+    .van-index-anchor--sticky,.van-hairline--bottom{
+      border-bottom: 1px solid $light-gray;
+      background:$light-gray;
+    }
+    .van-index-anchor{
+      font-weight:500;
+      color:rgba(102,102,102,1);
+    }
+    .van-grid{
+      background-color: #fff;
+      .van-grid-item__text{
+        text-align: center;
+      }
+    }
+  }
+  .carModel-nav-title{
+    height:50px;
+    background:rgba(63,144,247,1);
+    line-height: 51px;
+    display: flex;
+    z-index: 500;
+    .carModel-nav-title-img{
+      margin: 10px;
+      width: 30px;
+      height: 30px;
+    }
+    .carModel-nav-title-msg{
+      font-size:15px;
+      font-weight:400;
+      color:rgba(255,255,255,1);
+      display: block;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="innerCon">
+  <div>
     <form action="/">
       <van-search
         v-model="value"
@@ -60,7 +60,8 @@ export default {
       Toast('搜索VIN：' + val)
     },
     onCancel() {
-      this.$router.push('/home')
+      // this.$router.go(-1)
+      history.back(-1)
     },
     onLoad(val) {
       this.loading = true
