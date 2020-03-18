@@ -1,12 +1,12 @@
 <template>
   <div class="mainCon">
-    <NavBar :on-click-left="()=>$router.push('/home')" >
-      <van-icon name="filter-o" slot="right" size="20" @click="$refs.step3.showDicSearch=true"/>
+    <NavBar :on-click-left="()=>$router.push('/home')">
+      <van-icon v-show="step===3" slot="right" name="filter-o" size="20" @click="$refs.step3.showDicSearch=true" />
     </NavBar>
     <div class="carModel innerCon">
       <selectCarModelStep1 v-show="step===1" @changeStep="changeStep" />
       <selectCarModelStep2 v-show="step===2" @changeStep="changeStep" />
-      <selectCarModelStep3 ref="step3" v-show="step===3" @changeStep="changeStep" />
+      <selectCarModelStep3 v-show="step===3" ref="step3" @changeStep="changeStep" />
     </div>
   </div>
 
@@ -28,6 +28,7 @@ export default {
     }
   },
   mounted() {
+    this.changeStep(1)
     this.queryCarBrandList()
   },
   methods: {
@@ -38,6 +39,9 @@ export default {
           this.$store.commit('carModel/CLEAN_MODEL')
           this.$store.commit('carModel/CLEAN_FACTORY')
           this.$store.commit('carModel/CLEAN_SERIES')
+          break
+        case 2:
+          this.$store.commit('carModel/CLEAN_MODEL')
           break
       }
     },

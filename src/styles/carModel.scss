@@ -125,6 +125,10 @@
     line-height: 51px;
     display: flex;
     z-index: 500;
+    .carModel-nav-title-box{
+      width: 100%;
+      display: flex;
+    }
     .carModel-nav-title-img{
       margin: 10px;
       width: 30px;
@@ -135,6 +139,7 @@
       font-weight:400;
       color:rgba(255,255,255,1);
       display: block;
+      padding-right: 10px;
     }
   }
 }

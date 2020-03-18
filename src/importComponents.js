@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Popup, Toast, DropdownMenu, DropdownItem, Grid, GridItem, NavBar, IndexBar, IndexAnchor, PullRefresh, Icon, Cell, CellGroup, List, Search, Button, Tabbar, TabbarItem } from 'vant'
+import { Sidebar, SidebarItem, Tab, Tabs, NoticeBar, Popup, Toast, DropdownMenu, DropdownItem, Grid, GridItem, NavBar, IndexBar, IndexAnchor, PullRefresh, Icon, Cell, CellGroup, List, Search, Button, Tabbar, TabbarItem } from 'vant'
 
 Vue.use(Search)
 Vue.use(Tabbar)
@@ -19,3 +19,8 @@ Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Toast)
 Vue.use(Popup)
+Vue.use(NoticeBar)
+Vue.use(Tabs)
+Vue.use(Tab)
+Vue.use(Sidebar)
+Vue.use(SidebarItem)

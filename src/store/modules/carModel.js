@@ -11,7 +11,8 @@ const state = {
   selectedCarBrand: {},
   selectedCarFactory: '',
   selectedCarSeries: '',
-  selectedCarModel: ''
+  selectedCarModel: '',
+  selectedCarGroup: ''
 }
 
 const mutations = {
@@ -21,6 +22,9 @@ const mutations = {
   },
   SET_CAR_MODEL_LIST: (state, list) => {
     state.carModelList = list
+  },
+  SET_GROUP: (state, value) => {
+    state.selectedCarGroup = value
   },
   SET_MODEL: (state, value) => {
     state.selectedCarModel = value

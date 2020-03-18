@@ -7,7 +7,7 @@
     v-on="$listeners"
     @click-left="onClickLeft"
   >
-    <slot name="right" slot="right"></slot>
+    <slot slot="right" name="right" />
   </van-nav-bar>
 </template>
 <script>

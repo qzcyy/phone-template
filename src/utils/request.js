@@ -2,6 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import qs from 'qs'
 import md5 from 'js-md5'
+import { Notify } from 'vant'
 
 const APP_ID = process.env.VUE_APP_APP_ID
 const APP_KEY = process.env.VUE_APP_APP_KEY
@@ -49,9 +50,11 @@ axios.interceptors.response.use((res) => {
   } else if (res.data.code === 1000) {
     location.href = '/login'
   } else {
+    Notify({ type: 'danger', message: res.data.msg })
     return Promise.reject(res)
   }
 }, (error) => {
+  Notify({ type: 'danger', message: '服务器异常' })
   return Promise.reject(error)
 })
 

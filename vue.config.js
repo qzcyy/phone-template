@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
       // change xxx-api/login => mock/login
-      // detail: https://cli.vuejs.org/config/#devserver-proxy
+      // detail.vue: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
         target: `http://58.56.15.138:20012/`,
         timeout: 8640000,

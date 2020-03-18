@@ -4,8 +4,7 @@
       <van-search
         v-model="value"
         show-action
-        background="#4fc08d"
-        placeholder="请输入VIN码搜索"
+        placeholder="请输17位车架号查询"
         @search="onSearch"
       >
         <div slot="action" @click="onCancel">取消</div>
@@ -19,8 +18,8 @@
       class="vin-search-list"
       @load="onLoad"
     >
-      <van-cell v-for="item in searchList" :key="item" @click="listSearch(item)">
-        <span slot="title" style="width: 100%">{{ item }}</span>
+      <van-cell v-for="item in searchList" :key="item.id" @click="listSearch(item.vin)">
+        <span slot="title" style="width: 100%">{{ item.vin }}</span>
         <van-icon
           slot="right-icon"
           name="search"
@@ -31,6 +30,7 @@
   </div>
 </template>
 <script>
+import { queryVinScanningList, saveVinScanning, queryCarModelByVin } from '@/api/vin.js'
 import '../../styles/vin.scss'
 import { Toast } from 'vant'
 
@@ -40,12 +40,16 @@ export default {
       value: '',
       list: [],
       loading: false,
-      finished: false
+      finished: false,
+      searchQuery: {
+        pageIndex: 1,
+        pageSize: 10
+      }
     }
   },
   computed: {
     searchList() {
-      return this.list.filter(item => item.indexOf(this.value) !== -1)
+      return this.list.filter(item => item.vin.indexOf(this.value) !== -1)
     }
   },
   mounted() {
@@ -57,7 +61,29 @@ export default {
       this.onSearch(val)
     },
     onSearch(val) {
-      Toast('搜索VIN：' + val)
+      this.$toast.loading({
+        duration: 0,
+        forbidClick: true,
+        message: '查询中...'
+      })
+      queryCarModelByVin({
+        vin: val
+      }).then(res => {
+        this.$store.commit('vin/SET_VIN_SEARCH', res)
+        this.$store.commit('vin/SET_VIN', val)
+        this.$toast.clear()
+        saveVinScanning({
+          vin: val,
+          carGroup: JSON.stringify(res)
+        })
+        if (res.length === 1) {
+          this.$router.push('/parts/' + res[0].groupId)
+        } else {
+          this.$router.push('/vinSearch/' + val)
+        }
+      }, err => {
+        this.$toast.clear()
+      })
     },
     onCancel() {
       // this.$router.go(-1)
@@ -65,22 +91,20 @@ export default {
     },
     onLoad(val) {
       this.loading = true
-      // 异步更新数据
-      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.list.push(this.list.length + 1 + 'ZXCAF' + this.list.length + 3 + 'X' + i * 9 / 3 + 'LA' + this.list.length + 3 + 'X' + i * 2)
-        }
-
-        // 加载状态结束
+      queryVinScanningList(this.searchQuery).then(res => {
         this.loading = false
-
-        // 数据全部加载完成
-        if (this.list.length >= 40) {
+        this.list = this.list.concat(res.list)
+        this.searchQuery.pageIndex++
+        if (res.list.length < this.searchQuery.pageSize) {
           this.finished = true
         }
-      }, 1000)
+      })
     }
   }
 }
 </script>
+<style>
+  .van-search{
+    border-bottom: 2px solid #F4F5F7;
+  }
+</style>

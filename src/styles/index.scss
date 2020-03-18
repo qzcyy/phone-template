@@ -13,6 +13,23 @@ html,body,.mainCon{
 .color-orange{
   color: $orange;
 }
+.vin-icon{
+  width: 22px;
+  height: 13px;
+  display: block;
+  color: white;
+  font-size: 2px;
+  text-align: center;
+  line-height: 13px;
+  background-color: $orange;
+}
+.title-4{
+  height:14px;
+  font-size:15px;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  line-height:14px;
+}
 .mainCon{
   background:rgba(244,245,247,1);
 }
@@ -23,6 +40,11 @@ html,body,.mainCon{
   left: 0;
   right: 0;
   overflow: auto;
+}
+.groupList{
+  .van-cell-group{
+    margin-top: 10px;
+  }
 }
 .con-block{
   margin: 10px;

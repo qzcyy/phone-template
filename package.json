@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --fix --ext .js,.vue src"
   },
   "dependencies": {
     "autoprefixer": "^9.7.4",

@@ -6,7 +6,9 @@
         class="carModel-nav-title-img"
         @click="$emit('changeStep', 1)"
       >
-      <span class="carModel-nav-title-msg">{{ selectedCarBrand.brand }}</span>
+      <span class="carModel-nav-title-box van-ellipsis">
+        <span class="carModel-nav-title-msg" @click="$emit('changeStep', 2)">{{ selectedCarBrand.brand }}-{{ selectedCarFactory }}</span><span class="carModel-nav-title-msg van-ellipsis"> 〉{{ selectedCarModel }}</span>
+      </span>
     </h3>
     <van-list
       v-model="loading"
@@ -19,7 +21,7 @@
         :key="item.id"
         :title="item.carModel"
         class="con-block"
-        @click="selectCarModel(item.carModel)"
+        @click="selectCarGroup(item)"
       >
         <h4 class="carModel-list-title van-ellipsis">{{ item.modelYear }} {{ item.salesName }} {{ item.carModel }}</h4>
         <p class="carModel-list-msg">
@@ -92,7 +94,7 @@ export default {
   },
   watch: {
     selectedCarModel(value) {
-      value ? this.queryCarGroup(true) : void (0)
+      Object.keys(value).length ? this.queryCarGroup(true) : void (0)
     }
   },
   computed: {
@@ -112,19 +114,13 @@ export default {
     editSearchDic(value, key) {
       this.queryData[key] = value
     },
-    selectCarModel(value) {
-      this.$store.commit('carModel/SET_MODEL', value)
-      this.$emit('changeStep', 3)
-    },
-    changeFactory(value) {
-      this.$store.commit('carModel/SET_FACTORY', value)
-      this.$store.commit('carModel/CLEAN_SERIES')
-      this.$store.dispatch('carModel/queryCarSeriesList')
-      this.$store.commit('carModel/CLEAN_MODEL')
-    },
-    changeSeries(value) {
-      this.$store.commit('carModel/SET_SERIES', value)
-      this.$store.commit('carModel/CLEAN_MODEL')
+    selectCarGroup(value) {
+      this.$store.commit('carModel/SET_GROUP', value)
+      this.$store.commit('parts/SET_PARTS_CACHE', {
+        logo: this.selectedCarBrand.logo,
+        group: value
+      })
+      this.$router.push('/parts/' + value.id)
     },
     querySearchDic() {
       querySearchDic({

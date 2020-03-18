@@ -28,3 +28,15 @@ export function queryCarGroupList(params = {}) {
 export function querySearchDic(params = {}) {
   return fetchPost('/matching/querySearchDic', params)
 }
+// 查询车型详情
+export function queryCarModelDetail(params = {}) {
+  return fetchPost('/matching/queryCarModelDetail', params)
+}
+// 查询车型组详情-陈士荣
+export function queryCarModelGroupDetail(params = {}) {
+  return fetchPost('/matching/queryCarModelGroupDetail', params)
+}
+// 查询车型组变速箱
+export function queryGearbox(params = {}) {
+  return fetchPost('/matching/queryGearbox', params)
+}
