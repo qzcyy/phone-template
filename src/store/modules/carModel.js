@@ -12,10 +12,18 @@ const state = {
   selectedCarFactory: '',
   selectedCarSeries: '',
   selectedCarModel: '',
-  selectedCarGroup: ''
+  selectedCarGroup: '',
+  firstcomponentcode: '',
+  secondcomponentcode: ''
 }
 
 const mutations = {
+  SET_FIRST_COMPONENT_CODE: (state, value) => {
+    state.firstcomponentcode = value
+  },
+  SET_SECOND_COMPONENT_CODE: (state, value) => {
+    state.secondcomponentcode = value
+  },
   SET_CARBRAND_LIST: (state, list) => {
     state.carBrandList = state.carBrandList.concat(list)
     state.initialsList = state.initialsList.concat(list.map(item => item['首字母']))

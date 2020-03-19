@@ -1,12 +1,14 @@
 <template>
   <van-nav-bar
+    v-bind="$attrs"
+    v-on="$listeners"
     :title="$route.meta.title"
     left-text="返回"
     left-arrow
-    v-bind="$attrs"
-    v-on="$listeners"
     @click-left="onClickLeft"
   >
+    <slot slot="left" name="left" />
+    <slot slot="title" name="title" />
     <slot slot="right" name="right" />
   </van-nav-bar>
 </template>

@@ -14,20 +14,20 @@
         <a href="javascript:;">品牌筛选</a>
       </div>
       <van-list
-        class="maintenance-list-wrapper"
         v-model="loading"
+        class="maintenance-list-wrapper"
         :finished="finished"
         :immediate-check="false"
         finished-text="没有更多了"
         @load="queryList"
       >
-        <div v-for="item in list" class="maintenance-item van-clearfix" :key="item.id">
-          <img :src="item.imgPath" alt="图片加载失败">
+        <div v-for="item in list" :key="item.id" class="maintenance-item van-clearfix" @click="$router.push('/parts/detail/'+item.id)">
+          <img :src="item.imgPath || require('../../../assets/pic_def_bj.png')" alt="图片加载失败">
           <div class="right-box">
-            <div class="title-4 van-ellipsis">{{item.brand}} {{item.name}}</div>
-            <span>{{item.specificationModel}} | {{item.factoryNumber}}</span>
-            <span>备注：{{item.modelRemark||'--'}}</span>
-            <span>车型备注：{{item.remarks||'--'}}</span>
+            <div class="title-4 van-ellipsis">{{ item.brand }} {{ item.name }}</div>
+            <span>{{ item.specificationModel }} | {{ item.factoryNumber }}</span>
+            <span>备注：{{ item.modelRemark||'--' }}</span>
+            <span>车型备注：{{ item.remarks||'--' }}</span>
           </div>
         </div>
       </van-list>
@@ -69,7 +69,8 @@ export default {
         componentCode
       }).then(res => {
         this.sidebars = res
-        this.activeSidebar = 0
+        const codeIndex = res.findIndex(item => item.componentCode === this.$store.state.carModel.secondcomponentcode)
+        this.activeSidebar = codeIndex === -1 ? 0 : codeIndex
         this.changeSidebar()
       })
     },
@@ -81,6 +82,7 @@ export default {
     queryList() {
       this.loading = true
       this.finished = false
+      if (!this.$route.params.id) return
       queryAllPartsList({
         componentCode: this.selectedSidebar.componentCode,
         groupId: this.$route.params.id,
@@ -98,11 +100,13 @@ export default {
     queryTabs() {
       queryTopComponentList().then(res => {
         this.tabs = res
+        this.activeTab = this.$store.state.carModel.firstcomponentcode
         queryBottomComponentList({
-          componentCode: res[0].componentCode
+          componentCode: this.activeTab || res[0].componentCode
         }).then(res => {
           this.sidebars = res
-          this.activeSidebar = 0
+          const codeIndex = res.findIndex(item => item.componentCode === this.$store.state.carModel.secondcomponentcode)
+          this.activeSidebar = codeIndex === -1 ? 0 : codeIndex
           this.changeSidebar()
         })
       })

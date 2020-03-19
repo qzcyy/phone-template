@@ -13,6 +13,15 @@ html,body,.mainCon{
 .color-orange{
   color: $orange;
 }
+.mt10{
+  margin-top: 10px;
+}
+.ml10{
+  margin-left: 10px;
+}
+.mr10{
+  margin-right: 10px;
+}
 .vin-icon{
   width: 22px;
   height: 13px;
@@ -30,6 +39,62 @@ html,body,.mainCon{
   color:rgba(51,51,51,1);
   line-height:14px;
 }
+.title-3{
+  font-size:15px;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+}
+.title-2{
+  font-size:16px;
+  font-weight:600;
+  color:rgba(51,51,51,1);
+}
+.info-2{
+  font-size:12px;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+}
+.info-box-1{
+  font-size:13px;
+  font-weight:400;
+  color:#666666;
+  padding-top: 15px;
+  display: inline-block;
+  width: 100%;
+  .box-title{
+    color: #333333;
+    width: 60px;
+    display: inline-block;
+  }
+  &.wb50{
+    width: 50%;
+  }
+}
+.list-default{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  background:rgba(244,245,247,1);
+  .list-col{
+    height: 46px;
+    line-height: 46px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    &:nth-child(2n){
+      background:rgba(244,245,247,1);
+    }
+    .list-row{
+      width: 33%;
+      height: 46px;
+      text-align: center;
+      border-right: 1px solid #EEEEEE;
+      &:last-child{
+        border-right: none;
+      }
+    }
+  }
+}
 .mainCon{
   background:rgba(244,245,247,1);
 }
@@ -40,6 +105,46 @@ html,body,.mainCon{
   left: 0;
   right: 0;
   overflow: auto;
+}
+.detail-swipe-img{
+  height: 300px;
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  text-align: center;
+  line-height: 300px;
+  color:#999999;
+}
+.detail-container{
+  padding: 15px 13px;
+  background-color: #fff;
+}
+.detail-swipe{
+  position: relative;
+  .custom-indicator {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+.home{
+  background-color: #fff;
+  height: 100%;
+}
+.main-swipe{
+  height: 112px;
+  padding: 15px 10px;
+}
+.main-grid{
+  padding: 10px;
+  background-color: #F7F7F7;
+  .van-grid{
+    background-color: #fff;
+  }
 }
 .groupList{
   .van-cell-group{

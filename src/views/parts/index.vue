@@ -21,6 +21,7 @@
       <div class="parts-info" :class="{'hasVin':$route.query.vin}">
         <maintenance v-show="selectedTab===1" />
         <transmission v-show="selectedTab===2" />
+        <oil v-show="selectedTab===3" />
       </div>
     </div>
   </div>
@@ -30,12 +31,14 @@
 import { queryCarModelGroupDetail } from '@/api/carModel'
 import maintenance from './components/maintenance.vue'
 import transmission from './components/transmission.vue'
+import oil from './components/oil.vue'
 import { mapState } from 'vuex'
 import '@/styles/parts.scss'
 export default {
   components: {
     maintenance,
-    transmission
+    transmission,
+    oil
   },
   computed: {
     ...mapState({

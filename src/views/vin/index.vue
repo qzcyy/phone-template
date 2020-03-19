@@ -3,6 +3,7 @@
     <form action="/">
       <van-search
         v-model="value"
+        class="van-search-b"
         show-action
         placeholder="请输17位车架号查询"
         @search="onSearch"
@@ -69,6 +70,8 @@ export default {
       queryCarModelByVin({
         vin: val
       }).then(res => {
+        this.$store.commit('carModel/SET_FIRST_COMPONENT_CODE', '')
+        this.$store.commit('carModel/SET_SECOND_COMPONENT_CODE', '')
         this.$store.commit('vin/SET_VIN_SEARCH', res)
         this.$store.commit('vin/SET_VIN', val)
         this.$toast.clear()
@@ -104,7 +107,7 @@ export default {
 }
 </script>
 <style>
-  .van-search{
+  .van-search-b{
     border-bottom: 2px solid #F4F5F7;
   }
 </style>

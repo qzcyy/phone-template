@@ -40,3 +40,7 @@ export function queryCarModelGroupDetail(params = {}) {
 export function queryGearbox(params = {}) {
   return fetchPost('/matching/queryGearbox', params)
 }
+// 查询油液信息
+export function queryOilInfoByGroupID(params = {}) {
+  return fetchPost('/matching/queryOilInfoByGroupID', params)
+}

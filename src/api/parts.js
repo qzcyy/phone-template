@@ -16,4 +16,8 @@ export function queryCarModelByVin(params = {}) {
 export function queryAllPartsList(params = {}) {
   return fetchPost('/matching/queryAllPartsList', params)
 }
+// 查询配件详情-陈士荣
+export function queryPartDetail(params = {}) {
+  return fetchPost('/matching/queryPartDetail', params)
+}
 

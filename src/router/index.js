@@ -56,6 +56,14 @@ const router = new Router({
     component: () => import('../views/parts/index.vue')
   },
   {
+    path: '/parts/detail/:partId',
+    name: 'partsDetail',
+    meta: {
+      title: '配件详情'
+    },
+    component: () => import('../views/parts/detail.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     meta: {
