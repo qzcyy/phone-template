@@ -37,8 +37,10 @@ axios.interceptors.request.use((conf) => {
     conf.headers.appid = APP_ID
     conf.headers.timestamp = times
     conf.headers.signature = `${md5(md5((APP_KEY).toUpperCase() + times.toString().toUpperCase()).toUpperCase() + paramsUrl.replace(/\s/g, '').toUpperCase()).toUpperCase()}`
+    return conf
+  } else {
+    location.href = '/login'
   }
-  return conf
 }, (error) => {
   return Promise.reject(error)
 })
@@ -54,7 +56,7 @@ axios.interceptors.response.use((res) => {
     return Promise.reject(res)
   }
 }, (error) => {
-  Notify({ type: 'danger', message: '服务器异常' })
+  Notify({ type: 'danger', message: '服务器异常，请稍候重试' })
   return Promise.reject(error)
 })
 

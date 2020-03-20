@@ -32,6 +32,12 @@ html,body,.mainCon{
   line-height: 13px;
   background-color: $orange;
 }
+.title-1{
+  font-size:30px;
+  font-weight:600;
+  color:rgba(16,30,41,1);
+  line-height:34px;
+}
 .title-4{
   height:14px;
   font-size:15px;
@@ -51,6 +57,11 @@ html,body,.mainCon{
 }
 .info-2{
   font-size:12px;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+}
+.info-4{
+  font-size:14px;
   font-weight:400;
   color:rgba(153,153,153,1);
 }

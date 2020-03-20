@@ -1,0 +1,22 @@
+.login{
+  height: 100%;
+  background-image: url("../assets/bg_line.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: auto;
+  padding: 0 36px;
+  .login-logo{
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/logo_circle.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 76px;
+    //margin-left: 32px;
+  }
+  .title-1{
+    margin-top: 18px;
+    margin-bottom: 45px;
+  }
+}

@@ -174,6 +174,86 @@
       font-weight:500;
       color:rgba(51,51,51,1);
       line-height:30px;
+      .van-popup{
+        .van-button{
+          display: inline-block;
+          width: 50%;
+          border-radius: 0;
+        }
+      }
+      .maintenance-filter-brand{
+        padding: 10px 5px;
+        display: flex;
+        flex-wrap: wrap;
+        .maintenance-filter-brand-item{
+          height: 32px;
+          width: 58px;
+          background:rgba(244,245,247,1);
+          font-size:14px;
+          font-weight:400;
+          color:rgba(51,51,51,1);
+          line-height:30px;
+          display: block;
+          text-align: center;
+          margin: 5px 5px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          &.selected{
+            background: #ebf3ff;
+            border: 1px solid #3f90f7;
+            color: #3f90f7;
+          }
+        }
+      }
+      .maintenance-filter-info{
+        .maintenance-filter-item{
+          display: flex;
+          justify-content: start;
+          flex-wrap: wrap;
+          padding: 8px;
+          >img{
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            text-align: center;
+          }
+          .info-4{
+            margin-left: 10px;
+          }
+        }
+
+
+      }
+      .van-dropdown-menu{
+        float: right;
+        margin: 7px 10px;
+        height:17px;
+        font-size:12px;
+        font-weight:400;
+        color:rgba(102,102,102,1);
+        line-height: 17px;
+        background-color: transparent;
+        border: none;
+        .van-dropdown-item--down{
+          width: 290px;
+          margin-left: 85px;
+          margin-top: 5px;
+          .van-dropdown-item__content{
+            width: 290px;
+          }
+        }
+        .van-dropdown-menu__item{
+          border: none;
+          .van-dropdown-menu__title{
+            border:none;
+            line-height: 17px;
+            font-size:12px;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            margin-left: 10px;
+          }
+        }
+      }
       >a{
         float: right;
         margin: 0 10px;

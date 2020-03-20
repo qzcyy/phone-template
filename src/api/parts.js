@@ -20,4 +20,12 @@ export function queryAllPartsList(params = {}) {
 export function queryPartDetail(params = {}) {
   return fetchPost('/matching/queryPartDetail', params)
 }
+// 查询车型组部件匹配规则信息
+export function queryGroupComponentInfo(params = {}) {
+  return fetchPost('/matching/queryGroupComponentInfo', params)
+}
+// 配件品牌查询
+export function queryPartsBrands(params = {}) {
+  return fetchPost('/matching/queryPartsBrands', params)
+}
 

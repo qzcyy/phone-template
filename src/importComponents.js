@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Swipe, SwipeItem, Sidebar, SidebarItem, Tab, Tabs, NoticeBar, Popup, Toast, DropdownMenu, DropdownItem, Grid, GridItem, NavBar, IndexBar, IndexAnchor, PullRefresh, Icon, Cell, CellGroup, List, Search, Button, Tabbar, TabbarItem } from 'vant'
+import { Field, Form, Swipe, SwipeItem, Sidebar, SidebarItem, Tab, Tabs, NoticeBar, Popup, Toast, DropdownMenu, DropdownItem, Grid, GridItem, NavBar, IndexBar, IndexAnchor, PullRefresh, Icon, Cell, CellGroup, List, Search, Button, Tabbar, TabbarItem } from 'vant'
 
 Vue.use(Search)
 Vue.use(Tabbar)
@@ -26,3 +26,5 @@ Vue.use(Sidebar)
 Vue.use(SidebarItem)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
+Vue.use(Field)
+Vue.use(Form)

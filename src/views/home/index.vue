@@ -70,7 +70,8 @@ export default {
         logo: require('../../assets/home_icon_11.png')
       }, {
         currentName: '维修手册',
-        logo: require('../../assets/home_icon_12.png')
+        logo: require('../../assets/home_icon_12.png'),
+        handleClick: () => {}
       }, {
         currentName: '正时及保养',
         logo: require('../../assets/home_icon_13.png')
@@ -79,7 +80,8 @@ export default {
         logo: require('../../assets/home_icon_14.png')
       }, {
         currentName: '敬请期待',
-        logo: require('../../assets/home_icon_15.png')
+        logo: require('../../assets/home_icon_15.png'),
+        handleClick: () => {}
       }],
       current: 0
     }
