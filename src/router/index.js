@@ -64,6 +64,22 @@ const router = new Router({
     component: () => import('../views/parts/detail.vue')
   },
   {
+    path: '/repair',
+    name: 'repair',
+    meta: {
+      title: '维修案例'
+    },
+    component: () => import('../views/repair/index.vue')
+  },
+  {
+    path: '/checkError',
+    name: 'checkError',
+    meta: {
+      title: '纠错'
+    },
+    component: () => import('../views/errorCheck/index.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     meta: {

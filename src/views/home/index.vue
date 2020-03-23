@@ -77,7 +77,10 @@ export default {
         logo: require('../../assets/home_icon_13.png')
       }, {
         currentName: '维修案例',
-        logo: require('../../assets/home_icon_14.png')
+        logo: require('../../assets/home_icon_14.png'),
+        handleClick: () => {
+          this.$router.push('/repair')
+        }
       }, {
         currentName: '敬请期待',
         logo: require('../../assets/home_icon_15.png'),

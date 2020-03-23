@@ -19,7 +19,7 @@
         <a href="javascript:;" :class="{'selected':selectedTab===3}" @click="selectedTab=3">油液信息</a>
       </div>
       <div class="parts-info" :class="{'hasVin':$route.query.vin}">
-        <maintenance v-show="selectedTab===1" />
+        <maintenance v-show="selectedTab===1" :carModelGroupDetail="detail"/>
         <transmission v-show="selectedTab===2" />
         <oil v-show="selectedTab===3" />
       </div>

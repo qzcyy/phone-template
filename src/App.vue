@@ -6,7 +6,7 @@
     <van-tabbar v-show="$route.meta.showTabbar" route>
       <van-tabbar-item to="/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/vin" icon="search">VIN查询</van-tabbar-item>
-      <van-tabbar-item to="/login" info="3">
+      <van-tabbar-item to="/login">
         <span>我的</span>
         <img
           slot="icon"

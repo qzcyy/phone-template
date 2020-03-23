@@ -38,6 +38,7 @@
         </van-dropdown-menu>
       </div>
       <van-list
+        v-show="list.length||loading"
         v-model="loading"
         class="maintenance-list-wrapper"
         :finished="finished"
@@ -49,12 +50,16 @@
           <img :src="item.imgPath || require('../../../assets/pic_def_bj.png')" alt="图片加载失败">
           <div class="right-box">
             <div class="title-4 van-ellipsis">{{ item.brand }} {{ item.name }}</div>
+            <van-icon class="errorCheck-icon" :name="require('../../../assets/icon_mis.png')" size="16" @click.stop="checkError(item)" />
             <span>{{ item.specificationModel }} | {{ item.factoryNumber }}</span>
             <span>备注：{{ item.modelRemark||'--' }}</span>
-            <span>车型备注：{{ item.remarks||'--' }}</span>
+            <span>车型备注：{{ item.remark||'--' }}</span>
           </div>
         </div>
       </van-list>
+      <div v-show="!list.length&&!loading" class="no-message">
+        <van-button round size="small" @click.stop="checkError('')">纠错</van-button>
+      </div>
     </div>
   </div>
 </template>
@@ -62,6 +67,7 @@
 import { ImagePreview } from 'vant'
 import { queryPartsBrands, queryGroupComponentInfo, queryTopComponentList, queryBottomComponentList, queryAllPartsList } from '@/api/parts'
 export default {
+  props: ['carModelGroupDetail'],
   data() {
     return {
       activeSidebar: 0,
@@ -93,6 +99,15 @@ export default {
     this.queryTabs()
   },
   methods: {
+    checkError(item) {
+      this.$store.commit('checkError/SET_PARTS', {
+        component: this.selectedSidebar,
+        componentParent: this.tabs.find(item => item.componentCode === this.activeTab),
+        part: item
+      })
+      this.$store.commit('checkError/SET_DETAIL', this.carModelGroupDetail)
+      this.$router.push('/checkError?type=part')
+    },
     resetBrandFilter() {
       this.brandList.forEach(item => item.isSelected = false)
     },
@@ -124,6 +139,7 @@ export default {
       this.querySidebarInfo()
     },
     querySidebarInfo() {
+      if (!this.selectedSidebar.componentCode) return
       queryGroupComponentInfo({
         componentCode: this.selectedSidebar.componentCode,
         groupId: this.$route.params.id

@@ -5,6 +5,7 @@
       <van-notice-bar color="#F19D01" background="#FFF8EA" :text="'VIN:'+vin" />
       <div v-if="!vinSearchResult.length" class="vin-no-message">
         <p>暂无该车架号信息，车型数据持续完善中 请用其它方式查询</p>
+        <van-button round size="small" @click.stop="checkError('')">纠错</van-button>
       </div>
       <div v-else>
         <div class="search-res-length">共{{ vinSearchResult.length }}条查询结果</div>
@@ -18,7 +19,7 @@
               {{ item.salesName }}({{ item.productionYear }}-{{ item.discontinuationYear }})
             </div>
             <div class="search-res-list-item-btn">
-              <van-button round size="small">纠错</van-button>
+              <van-button round size="small" @click.stop="checkError(item)">纠错</van-button>
               <van-button round type="info" size="small" @click.stop="$router.push('/carModel/detail/'+item.carmodelId)">详情</van-button>
             </div>
           </div>
@@ -37,6 +38,12 @@ export default {
       vinSearchResult: state => state.vin.vinSearchResult,
       vin: state => state.vin.vin
     })
+  },
+  methods: {
+    checkError(item) {
+      this.$store.commit('checkError/SET_DETAIL', item)
+      this.$router.push('/checkError?type=vin&vin=' + this.vin)
+    }
   }
 }
 </script>

@@ -4,8 +4,8 @@ import qs from 'qs'
 import md5 from 'js-md5'
 import { Notify } from 'vant'
 
-const APP_ID = process.env.VUE_APP_APP_ID
-const APP_KEY = process.env.VUE_APP_APP_KEY
+export const APP_ID = process.env.VUE_APP_APP_ID
+export const APP_KEY = process.env.VUE_APP_APP_KEY
 
 axios.defaults.timeout = 864000 // 响应时间
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -20,6 +20,8 @@ axios.interceptors.request.use((conf) => {
     paramsUrl = Object.keys(conf.data).sort().reduce((total, item) => {
       if (typeof conf.data[item] === 'object') {
         return total + JSON.stringify(conf.data[item])
+      } else if (conf.data[item] === undefined || conf.data[item] === null) {
+        return total
       } else {
         return total + item + conf.data[item]
       }

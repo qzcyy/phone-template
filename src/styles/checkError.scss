@@ -1,0 +1,67 @@
+.checkError{
+  .btn-box{
+    padding: 4px 10px;
+    background-color: #fff;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 0;
+  }
+  .checkError-box{
+    margin-top: 10px;
+    background-color: #fff;
+    &.pb15{
+      padding-bottom: 15px;
+    }
+    .checkError-box-title{
+      font-size:14px;
+      font-weight:400;
+      color:rgba(102,102,102,1);
+      padding: 15px 0 12px 12px;
+    }
+    .van-uploader{
+      margin-left: 15px;
+    }
+    textarea{
+      margin: 0 auto 15px auto;
+      display: block;
+      width: 330px;
+      height:80px;
+      background:rgba(244,245,247,1);
+      border-radius:5px;
+      border: none;
+      padding: 10px;
+      font-size:14px;
+      font-weight:400;
+      color:rgba(153,153,153,1);
+      line-height:20px;
+    }
+    .checkError-box-item{
+      border-bottom: 1px solid #EEEEEE;
+      padding: 15px;
+      font-size:14px;
+      font-weight:400;
+      color:rgba(102,102,102,1);
+      display: flex;
+      &:last-child{
+        border-bottom: none;
+      }
+      .checkError-box-item-key{
+        width: 100px;
+      }
+      .checkError-box-item-value{
+        color:rgba(51,51,51,1);
+        .checkError-box-item-value-title{
+          font-size:14px;
+          font-weight:400;
+          color:rgba(51,51,51,1);
+        }
+        .checkError-box-item-value-msg{
+          font-size:12px;
+          font-weight:400;
+          color:rgba(153,153,153,1);
+          line-height:17px;
+        }
+      }
+    }
+  }
+}
