@@ -91,3 +91,65 @@
     }
   }
 }
+.vin-list{
+  margin-top: 10px;
+  padding: 5px 12px;
+  background-color: #fff;
+  .vin-list-title{
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 10;
+    border-bottom: 1px solid #EEEEEE;
+    padding: 5px 0;
+  }
+  .vin-list-item{
+    padding: 10px 0;
+    border-bottom: 1px solid #EEEEEE;
+    position: relative;
+    .vin-list-item-info{
+      position: relative;
+      .title-2{
+        width: 279px;
+      }
+      .carModel-index{
+        position: absolute;
+        top: 2px;
+        right: 30px;
+        font-size:12px;
+        font-weight:400;
+        color:rgba(241,157,1,1);
+        line-height:16px;
+        width:40px;
+        height:16px;
+        background:rgba(253,247,235,1);
+        border-radius:3px;
+        text-align: center;
+      }
+    }
+    .arrow-r{
+      position: absolute;
+      right: 2px;
+      top: 20px;
+    }
+    .vin-list-item-bottom{
+      font-size:11px;
+      font-weight:400;
+      color:rgba(153,153,153,1);
+      line-height:13px;
+      .vin-list-item-bottom-vin{
+        display: inline-block;
+        padding: 0 2px;
+        height:13px;
+        border-radius:2px;
+        border:1px solid rgba(221,221,221,1);
+      }
+      .vin-list-item-bottom-time{
+        position: absolute;
+        right: 10px;
+        bottom: 11px;
+      }
+    }
+  }
+}

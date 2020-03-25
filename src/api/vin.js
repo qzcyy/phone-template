@@ -12,4 +12,8 @@ export function saveVinScanning(params = {}) {
 export function queryCarModelByVin(params = {}) {
   return fetchPost('/matching/queryCarModelByVin', params)
 }
+// VIN扫描记录查询（按车型条件模糊查询）-陈士荣
+export function queryVinScanningListVague(params = {}) {
+  return fetchPost('/matching/queryVinScanningListVague', params)
+}
 

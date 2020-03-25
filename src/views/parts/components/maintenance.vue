@@ -46,7 +46,7 @@
         finished-text="没有更多了"
         @load="queryList"
       >
-        <div v-for="item in list" :key="item.id" class="maintenance-item van-clearfix" @click="$router.push('/parts/detail/'+item.id)">
+        <div v-for="item in list" :key="item.id" class="maintenance-item van-clearfix" @click="goDetail(item)">
           <img :src="item.imgPath || require('../../../assets/pic_def_bj.png')" alt="图片加载失败">
           <div class="right-box">
             <div class="title-4 van-ellipsis">{{ item.brand }} {{ item.name }}</div>
@@ -99,6 +99,14 @@ export default {
     this.queryTabs()
   },
   methods: {
+    goDetail(item) {
+      this.$store.commit('checkError/SET_PARTS', {
+        component: this.selectedSidebar,
+        componentParent: this.tabs.find(item => item.componentCode === this.activeTab),
+        part: item
+      })
+      this.$router.push('/parts/detail/' + item.id)
+    },
     checkError(item) {
       this.$store.commit('checkError/SET_PARTS', {
         component: this.selectedSidebar,

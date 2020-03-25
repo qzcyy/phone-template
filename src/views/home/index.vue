@@ -1,18 +1,18 @@
 <template>
   <div class="home">
     <NavBar>
-      <span slot="title">数据专家</span><span slot="left" />
+      <span slot="title">系统首页</span><span slot="left" />
     </NavBar>
     <div>
       <div class="main-swipe">
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item>1</van-swipe-item>
-          <van-swipe-item>2</van-swipe-item>
-          <van-swipe-item>3</van-swipe-item>
-          <van-swipe-item>4</van-swipe-item>
+        <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
+          <van-swipe-item><img src="../../assets/zy1.png" alt=""></van-swipe-item>
+          <van-swipe-item><img src="../../assets/zy2.png" alt=""></van-swipe-item>
+          <van-swipe-item><img src="../../assets/zy3.png" alt=""></van-swipe-item>
+          <van-swipe-item><img src="../../assets/zy4.png" alt=""></van-swipe-item>
         </van-swipe>
       </div>
-      <div class="main-grid">
+      <div class="main-grid mt5">
         <van-search placeholder="请输入17位车架号查询" @focus="$router.push('/vin')" />
         <van-grid :border="false" center square>
           <van-grid-item
@@ -118,6 +118,8 @@ export default {
             ...res.find(item2 => item2.name.indexOf(item.currentName) !== -1)
           }
         })
+        this.$toast.clear()
+      }).catch(err => {
         this.$toast.clear()
       })
     },

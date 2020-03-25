@@ -1,5 +1,5 @@
 const state = {
-  vin: '',
+  commodity: {},
   checkErrorCarModel: {},
   checkErrorPartsDetail: {}
 }
@@ -11,8 +11,8 @@ const mutations = {
   SET_PARTS: (state, value) => {
     state.checkErrorPartsDetail = value
   },
-  SET_VIN: (state, value) => {
-    state.vin = value
+  SET_COMMIDITY: (state, value) => {
+    state.commodity = value
   }
 }
 

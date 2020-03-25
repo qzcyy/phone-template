@@ -41,7 +41,8 @@ axios.interceptors.request.use((conf) => {
     conf.headers.signature = `${md5(md5((APP_KEY).toUpperCase() + times.toString().toUpperCase()).toUpperCase() + paramsUrl.replace(/\s/g, '').toUpperCase()).toUpperCase()}`
     return conf
   } else {
-    location.href = '/login'
+    location.href = '/#/login'
+    return Promise.reject('noLogin')
   }
 }, (error) => {
   return Promise.reject(error)
@@ -52,13 +53,18 @@ axios.interceptors.response.use((res) => {
   if (res.data.code === 0) {
     return Promise.resolve(res.data.data)
   } else if (res.data.code === 1000) {
-    location.href = '/login'
+    location.href = '/#/login'
   } else {
     Notify({ type: 'danger', message: res.data.msg })
     return Promise.reject(res)
   }
 }, (error) => {
-  Notify({ type: 'danger', message: '服务器异常，请稍候重试' })
+  if (error === 'noLogin') {
+    Notify({ type: 'danger', message: '登录信息失效，请重新登录' })
+  } else {
+    Notify({ type: 'danger', message: '服务器异常，请稍候重试' })
+  }
+
   return Promise.reject(error)
 })
 

@@ -12,4 +12,16 @@ export function saveVIN(params = {}) {
 export function SaveMatching(params = {}) {
   return fetchPost('/errcheck/SaveMatching', params)
 }
+// 添加商品详情纠错信息-陈士荣
+export function savePart(params = {}) {
+  return fetchPost('/errcheck/savePart', params)
+}
+// 查询我的纠错-陈士荣
+export function query(params = {}) {
+  return fetchPost('/errcheck/query', params)
+}
+// 查询纠错详情-陈士荣
+export function getDetail(params = {}) {
+  return fetchPost('/errcheck/getDetail', params)
+}
 

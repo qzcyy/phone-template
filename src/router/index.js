@@ -24,6 +24,13 @@ const router = new Router({
     },
     component: () => import('../views/vin/index.vue')
   }, {
+    path: '/vin/history',
+    name: 'vinHistory',
+    meta: {
+      title: 'VIN查询记录'
+    },
+    component: () => import('../views/vin/history.vue')
+  }, {
     path: '/carModel',
     name: 'carModel',
     meta: {
@@ -72,6 +79,14 @@ const router = new Router({
     component: () => import('../views/repair/index.vue')
   },
   {
+    path: '/repair/detail/:id',
+    name: 'repairDetail',
+    meta: {
+      title: '案例详情'
+    },
+    component: () => import('../views/repair/detail.vue')
+  },
+  {
     path: '/checkError',
     name: 'checkError',
     meta: {
@@ -80,12 +95,35 @@ const router = new Router({
     component: () => import('../views/errorCheck/index.vue')
   },
   {
+    path: '/checkError/me',
+    name: 'myCheckError',
+    meta: {
+      title: '我的纠错'
+    },
+    component: () => import('../views/errorCheck/me.vue')
+  },
+  {
+    path: '/checkError/detail/:id',
+    name: 'checkErrorDetail',
+    meta: {
+      title: '纠错详情'
+    },
+    component: () => import('../views/errorCheck/detail.vue')
+  },
+  {
+    path: '/me',
+    name: 'me',
+    meta: {
+      title: '我的',
+      showTabbar: true
+    },
+    component: () => import('../views/home/me.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     meta: {
-      title: '登录',
-      showTabbar: true
-
+      title: '登录'
     },
     component: () => import('../views/login/index.vue')
   }]

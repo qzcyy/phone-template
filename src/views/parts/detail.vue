@@ -2,7 +2,7 @@
   <div class="mainCon">
     <NavBar>
       <div slot="right">
-        <van-icon class="mr10" :name="require('../../assets/icon_mis.png')" size="24" @click="$router.push('/errorCheck/'+detail.id+'?type=parts')" />
+        <van-icon class="mr10" :name="require('../../assets/icon_mis.png')" size="24" @click="errorCheck" />
         <van-icon :name="require('../../assets/icon_home_line_balck.png')" size="24" @click="$router.push('/home')" />
       </div>
     </NavBar>
@@ -51,6 +51,10 @@ export default {
     this.getDetail()
   },
   methods: {
+    errorCheck() {
+      this.$store.commit('checkError/SET_COMMIDITY', this.detail)
+      this.$router.push('/checkError?type=commodity')
+    },
     onChange(index) {
       this.current = index
     },

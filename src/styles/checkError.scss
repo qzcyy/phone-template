@@ -1,10 +1,61 @@
 .checkError{
+  height: calc(100% - 50px);
+  margin-bottom: 50px;
+  .innerCon{
+    bottom: 50px;
+  }
+  &.me{
+    margin-bottom: 0;
+    height: 100%;
+    .innerCon{
+      bottom: 0;
+    }
+    .van-pull-refresh{
+      position: absolute;
+      top: 50px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+    }
+    .con-block{
+      position: relative;
+      padding-left: 30px;
+      &.looked:after{
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 20px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #F03B3B;
+      }
+      .arrow-r{
+        position: absolute;
+        right: 10px;
+        top: 12px;
+      }
+      .tags{
+        position: absolute;
+        right: 10px;
+        bottom: 12px;
+        .van-tag{
+          margin-right: 10px;
+        }
+      }
+    }
+  }
   .btn-box{
     padding: 4px 10px;
     background-color: #fff;
     margin-top: 10px;
-    position: sticky;
+    //position: sticky;
     bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
   }
   .checkError-box{
     margin-top: 10px;
@@ -47,6 +98,7 @@
       }
       .checkError-box-item-key{
         width: 100px;
+        min-width: 100px;
       }
       .checkError-box-item-value{
         color:rgba(51,51,51,1);

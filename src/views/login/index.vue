@@ -45,6 +45,7 @@ export default {
         accountName: this.accountName
       }).then(res => {
         this.loading = false
+        this.$router.push('/home')
       }, err => {
         this.loading = false
       })
