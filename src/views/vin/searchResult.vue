@@ -2,12 +2,13 @@
   <div class="mainCon">
     <NavBar />
     <div class="search-res innerCon">
-      <van-notice-bar color="#F19D01" background="#FFF8EA" :text="'VIN:'+vin" />
+      <van-notice-bar color="#F19D01" background="#FFF8EA" text="请检查识别结果是否与图片数据一致" />
       <div v-if="!vinSearchResult.length" class="vin-no-message">
         <p>暂无该车架号信息，车型数据持续完善中 请用其它方式查询</p>
         <van-button round size="small" @click.stop="checkError('')">纠错</van-button>
       </div>
       <div v-else>
+        <van-search placeholder="请输入17位车架号查询" :value="vin" @focus="$router.push('/vin/'+vin)" />
         <div class="search-res-length">共{{ vinSearchResult.length }}条查询结果</div>
         <div class="search-res-list">
           <div v-for="item in vinSearchResult" :key="item.carmodelId" class="search-res-list-item" @click="$router.push({path:'/parts/' + item.groupId,query:{carmodelId:item.carmodelId,vin}})">

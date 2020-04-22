@@ -164,6 +164,7 @@
     height: 424px;
     width: 290px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     .no-message{
       height: 300px;
       background: url("../assets/no-message.png") no-repeat center;
@@ -277,6 +278,7 @@
     }
     .maintenance-list-wrapper{
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       height: 354px;
     }
     .maintenance-item{
@@ -319,6 +321,7 @@
   }
   .van-sidebar{
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     height: 424px;
     background-color: #fafafa;
   }

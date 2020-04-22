@@ -36,6 +36,7 @@
     &.hasBtn{
       overflow-y: auto;
       height: calc(100% - 70px);
+      -webkit-overflow-scrolling: touch;
     }
     .right-search-item{
       .right-search-item-title{
@@ -73,6 +74,7 @@
   .carModel-list{
     position: absolute;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     top: 102px;
     bottom: 0;
     left: 0;

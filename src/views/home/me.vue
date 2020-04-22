@@ -12,7 +12,7 @@
           <van-cell title="VIN查询记录" is-link to="/vin/history" />
         </van-cell-group>
         <van-cell-group class="mt10">
-          <van-cell title="退出登录" @click="logout" />
+          <van-cell style="color: #F03B3B" title="退出登录" @click="logout" />
         </van-cell-group>
       </div>
     </div>

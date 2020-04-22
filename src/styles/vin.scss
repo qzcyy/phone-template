@@ -25,6 +25,7 @@
     left: 0;
     right: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     .search-res-list-item{
       height: 86px;
       border-bottom: 1px solid #EEEEEE;

@@ -5,9 +5,9 @@
     <van-form @submit="login">
       <van-field
         v-model="accountName"
-        name="手机号"
-        label="手机号"
-        placeholder="手机号"
+        name="账号"
+        label="账号"
+        placeholder="账号"
         :rules="[{ required: true, message: '请填写用户名' }]"
       />
       <van-field

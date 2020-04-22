@@ -23,14 +23,19 @@
             @click="gridClick(item)"
           />
         </van-grid>
+        <!--<iframe-->
+          <!--id="pdf-window"-->
+          <!--frameborder="0"-->
+        <!--/>-->
       </div>
     </div>
   </div>
 </template>
 <script>
-import { queryComponentListForPCApp } from '@/api/index'
+import { queryComponentListForPCApp, queryPDF } from '@/api/index'
 import { ImagePreview } from 'vant'
-
+import { signatureUrl } from '../../utils/signature'
+const baseApi = process.env.VUE_APP_BASE_API
 export default {
   data() {
     return {
@@ -71,7 +76,13 @@ export default {
       }, {
         currentName: '维修手册',
         logo: require('../../assets/home_icon_12.png'),
-        handleClick: () => {}
+        handleClick: async() => {
+          this.$router.push('/serviceManual')
+
+          // const signatureUrl1 = signatureUrl({ id: 135243 })
+          // location.href = '/pdf/web/viewer.html?file=' + encodeURIComponent(baseApi + '/bookRepair/manual/pdf?id%3D135243&signatureUrl=' + signatureUrl1)
+          // document.getElementById('pdf-window').src =
+        }
       }, {
         currentName: '正时及保养',
         logo: require('../../assets/home_icon_13.png')

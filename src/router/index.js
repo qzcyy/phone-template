@@ -17,7 +17,7 @@ const router = new Router({
     component: () => import('../views/home/index.vue')
   },
   {
-    path: '/vin',
+    path: '/vin/:vin?',
     name: 'vin',
     meta: {
       showTabbar: true
@@ -69,6 +69,14 @@ const router = new Router({
       title: '配件详情'
     },
     component: () => import('../views/parts/detail.vue')
+  },
+  {
+    path: '/serviceManual',
+    name: 'serviceManual',
+    meta: {
+      title: '维修手册'
+    },
+    component: () => import('../views/serviceManual/index.vue')
   },
   {
     path: '/repair',

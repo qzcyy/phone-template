@@ -14,7 +14,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_API // 配置接口地址
 // POST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((conf) => {
   let paramsUrl
-  if (!Object.keys(conf.data).length) {
+  if (!conf.data || !Object.keys(conf.data).length) {
     paramsUrl = ''
   } else {
     paramsUrl = Object.keys(conf.data).sort().reduce((total, item) => {
@@ -50,6 +50,9 @@ axios.interceptors.request.use((conf) => {
 
 // 返回状态判断(添加响应拦截器)
 axios.interceptors.response.use((res) => {
+  if (res.config.noCheckError) {
+    return Promise.resolve(res)
+  }
   if (res.data.code === 0) {
     return Promise.resolve(res.data.data)
   } else if (res.data.code === 1000) {

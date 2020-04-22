@@ -119,6 +119,7 @@ html,body,.mainCon{
   left: 0;
   right: 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   &.hasOtherHeader{
     top: $navbarHeight + 50px;
   }
@@ -191,11 +192,11 @@ html,body,.mainCon{
   .me-header{
     background:rgba(70,177,248,1);
     position: relative;
-    padding: 30px 20px;
+    padding: 20px 20px;
     display: flex;
     .me-header-img{
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       display: inline-block;
     }
     .me-header-name{
@@ -207,5 +208,6 @@ html,body,.mainCon{
   }
   .me-body{
     margin-top: 10px;
+
   }
 }

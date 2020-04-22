@@ -50,11 +50,16 @@ export default {
   },
   computed: {
     searchList() {
-      return this.list.filter(item => item.vin.indexOf(this.value) !== -1)
+      if (this.value) {
+        return this.list.filter(item => item.vin.indexOf(this.value) !== -1)
+      } else {
+        return this.list
+      }
     }
   },
   mounted() {
     this.onLoad()
+    this.value = this.$route.params.vin
   },
   methods: {
     listSearch(val) {

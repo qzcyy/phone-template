@@ -1,5 +1,5 @@
 const autoprefixer = require('autoprefixer')
-const pxtoviewport = require('postcss-px-to-viewport');
+const pxtoviewport = require('postcss-px-to-viewport')
 const path = require('path')
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 function resolve(dir) {
@@ -41,7 +41,7 @@ module.exports = {
       // detail.vue: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
         target: `http://58.56.15.138:20012/`,
-        // target: `http://192.168.0.221:20012/`,
+        // target: `http://192.168.0.145:20012/`,
         timeout: 8640000,
         changeOrigin: true,
         pathRewrite: {
