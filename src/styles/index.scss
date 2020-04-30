@@ -77,7 +77,7 @@ html,body,.mainCon{
   width: 100%;
   .box-title{
     color: #333333;
-    width: 60px;
+    width: 70px;
     display: inline-block;
   }
   &.wb50{
@@ -175,6 +175,10 @@ html,body,.mainCon{
   background-color: #F7F7F7;
   .van-grid{
     background-color: #fff;
+    margin-bottom: 30px;
+    .van-grid-item__icon{
+      font-size: 32px;
+    }
   }
 }
 .groupList{

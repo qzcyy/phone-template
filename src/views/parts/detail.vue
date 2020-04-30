@@ -7,12 +7,20 @@
       </div>
     </NavBar>
     <div class="innerCon">
-      <van-swipe class="detail-swipe" @change="onChange">
+      <van-swipe v-if="detail.imgList&&detail.imgList.length" class="detail-swipe" @change="onChange">
         <van-swipe-item v-for="(item,index) in detail.imgList" :key="index">
           <img class="detail-swipe-img" :src="item.imgPath|| require('../../assets/pic_def_bj.png')" alt="图片加载失败" @click="showImgList(detail.imgList,index)">
         </van-swipe-item>
         <div slot="indicator" class="custom-indicator">
           {{ current + 1 }}/{{ detail.imgList&& detail.imgList.length }}
+        </div>
+      </van-swipe>
+      <van-swipe v-else class="detail-swipe">
+        <van-swipe-item>
+          <img class="detail-swipe-img" :src="require('../../assets/pic_def_bj.png')" alt="图片加载失败">
+        </van-swipe-item>
+        <div slot="indicator" class="custom-indicator">
+          1/1
         </div>
       </van-swipe>
       <div class="detail-container">

@@ -41,7 +41,7 @@
       .tags{
         position: absolute;
         right: 10px;
-        bottom: 12px;
+        bottom: 13px;
         .van-tag{
           margin-right: 10px;
         }
@@ -61,6 +61,11 @@
   .checkError-box{
     margin-top: 10px;
     background-color: #fff;
+    .van-image{
+      img{
+        border-radius: 5px;
+      }
+    }
     &.pb15{
       padding-bottom: 15px;
     }

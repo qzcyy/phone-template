@@ -157,6 +157,7 @@
   //  border:1px solid rgba(238,238,238,1);
   //}
   .maintenance-list{
+    background-color: #fff;
     position: absolute;
     top: 44px;
     right: 0;
@@ -239,14 +240,17 @@
       }
       .van-dropdown-menu{
         float: right;
-        margin: 7px 10px;
-        height:17px;
+        margin: 0px 10px;
+        height:30px;
         font-size:12px;
         font-weight:400;
         color:rgba(102,102,102,1);
-        line-height: 17px;
+        line-height: 30px;
         background-color: transparent;
         border: none;
+        &:after{
+          border: none;
+        }
         .van-dropdown-item--down{
           width: 290px;
           margin-left: 85px;
@@ -258,6 +262,9 @@
         .van-dropdown-menu__item{
           border: none;
           .van-dropdown-menu__title{
+            &:after{
+              border: none;
+            }
             border:none;
             line-height: 17px;
             font-size:12px;
@@ -282,7 +289,7 @@
       height: 354px;
     }
     .maintenance-item{
-      padding: 10px;
+      padding: 15px 10px;
       border-bottom: 1px solid #EEEEEE;
       position: relative;
       >img{
@@ -297,6 +304,7 @@
         float: left;
         width: 180px;
         .title-4{
+          padding-top: 1px;
           width: 140px;
         }
         .errorCheck-icon{
@@ -306,10 +314,10 @@
         }
         >span{
           display: block;
-          font-size:12px;
+          font-size:14px;
           font-weight:400;
           color:rgba(153,153,153,1);
-          line-height:12px;
+          line-height:16px;
           margin: 5px 0;
         }
       }

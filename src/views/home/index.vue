@@ -85,7 +85,10 @@ export default {
         }
       }, {
         currentName: '正时及保养',
-        logo: require('../../assets/home_icon_13.png')
+        logo: require('../../assets/home_icon_13.png'),
+        handleClick: async() => {
+          this.$router.push('/maintain')
+        }
       }, {
         currentName: '维修案例',
         logo: require('../../assets/home_icon_14.png'),

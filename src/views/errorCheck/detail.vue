@@ -35,7 +35,7 @@
         <h5 class="checkError-box-title">上传图片</h5>
         <van-grid :border="false" :column-num="4" square :gutter="10">
           <van-grid-item v-for="(item,index) in imgs" :key="item.id" @click="showImgList(imgs,index)">
-            <van-image :src="item.imgPath">
+            <van-image :src="item.imgPath" width="75" height="75">
               <template v-slot:loading>
                 <van-loading type="spinner" size="20" />
               </template>

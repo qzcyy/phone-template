@@ -79,6 +79,22 @@ const router = new Router({
     component: () => import('../views/serviceManual/index.vue')
   },
   {
+    path: '/pdf/:id',
+    name: 'pdf',
+    meta: {
+      title: '资料详情'
+    },
+    component: () => import('../views/pdf/detail.vue')
+  },
+  {
+    path: '/maintain',
+    name: 'maintain',
+    meta: {
+      title: '正时及保养'
+    },
+    component: () => import('../views/maintain/index.vue')
+  },
+  {
     path: '/repair',
     name: 'repair',
     meta: {
