@@ -77,6 +77,7 @@ export default {
         currentName: '维修手册',
         logo: require('../../assets/home_icon_12.png'),
         handleClick: async() => {
+          this.$store.commit('serviceManual/RESET_ALL')
           this.$router.push('/serviceManual')
 
           // const signatureUrl1 = signatureUrl({ id: 135243 })
@@ -87,6 +88,7 @@ export default {
         currentName: '正时及保养',
         logo: require('../../assets/home_icon_13.png'),
         handleClick: async() => {
+          this.$store.commit('maintain/RESET_ALL')
           this.$router.push('/maintain')
         }
       }, {

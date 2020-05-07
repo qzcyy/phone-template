@@ -97,6 +97,7 @@
 <script>
 import '../../styles/serviceManual.scss'
 import { querySeries, queryBrand, queryCarModel, queryProductionYear, queryDisplacement, queryEngineModel, queryType, queryTree } from '@/api/maintenance'
+import { mapState } from 'vuex'
 function getChildrenSearch(tree, value) {
   if (!value) {
     return tree
@@ -117,48 +118,73 @@ export default {
     return {
       searchValue: '',
       show: false,
-      step: 1,
-      serviceList: [],
-      series: '',
-      brandList: [],
-      brand: '',
-      carModelList: [],
-      carModel: '',
-      productionYearList: [],
-      productionYear: '',
-      displacementList: [],
-      displacement: '',
-      engineModelList: [],
-      engineModel: '',
-      typeList: [],
-      carId: '',
-      activeTab: '',
-      tree: [],
-      _treeCache: {},
-      titleList: []
+      // step: 1,
+      // serviceList: [],
+      // series: '',
+      // brandList: [],
+      // brand: '',
+      // carModelList: [],
+      // carModel: '',
+      // productionYearList: [],
+      // productionYear: '',
+      // displacementList: [],
+      // displacement: '',
+      // engineModelList: [],
+      // engineModel: '',
+      // typeList: [],
+      // carId: '',
+      activeTab: ''
+      // tree: [],
+      // _treeCache: {},
+      // titleList: []
     }
   },
   computed: {
     filterTree() {
       return getChildrenSearch(this.tree, this.searchValue)
-    }
+    },
+    ...mapState({
+      step: state => state.maintain.step,
+      serviceList: state => state.maintain.serviceList,
+      series: state => state.maintain.series,
+      brandList: state => state.maintain.brandList,
+      brand: state => state.maintain.brand,
+      carModelList: state => state.maintain.carModelList,
+      carModel: state => state.maintain.carModel,
+      productionYearList: state => state.maintain.productionYearList,
+      productionYear: state => state.maintain.productionYear,
+      displacementList: state => state.maintain.displacementList,
+      displacement: state => state.maintain.displacement,
+      engineModelList: state => state.maintain.engineModelList,
+      engineModel: state => state.maintain.engineModel,
+      typeList: state => state.maintain.typeList,
+      carId: state => state.maintain.carId,
+      tree: state => state.maintain.tree,
+      treeCache: state => state.maintain.treeCache,
+      titleList: state => state.maintain.titleList
+    })
   },
   mounted() {
     this.querySeries()
   },
   methods: {
     selectIndexes(item) {
-      this.tree = item.children
-      this.titleList = this.titleList.splice(0, this.titleList.findIndex(item1 => item1.id === item.id) + 1)
+      // this.tree = item.children
+      this.$store.commit('maintain/SET_TREE', item.children)
+      const _title = this.titleList.splice(0, this.titleList.findIndex(item1 => item1.id === item.id) + 1)
+      this.$store.commit('maintain/SET_TITLE_LIST', _title)
+      // this.titleList = this.titleList.splice(0, this.titleList.findIndex(item1 => item1.id === item.id) + 1)
     },
     clearIndexes() {
-      this.titleList = []
-      this.tree = this._treeCache
+      this.$store.commit('maintain/SET_TITLE_LIST', [])
+      this.$store.commit('maintain/SET_TREE', this.treeCache)
     },
     pdfCellClick(item) {
       if (item.children) {
-        this.tree = item.children
-        this.titleList.push(item)
+        this.$store.commit('maintain/SET_TREE', item.children)
+        // this.tree = item.children
+        this.$store.commit('maintain/PUSH_TITLE_LIST', item)
+        // this.titleList.push(item)
       } else {
         this.$router.push('/pdf/' + item.id + '?type=maintenance')
       }
@@ -173,64 +199,86 @@ export default {
         type: this.activeTab,
         carId: this.carId
       }).then(res2 => {
-        this.tree = res2
-        this._treeCache = res2
-        this.titleList = []
+        this.$store.commit('maintain/SET_TREE', res2)
+        this.$store.commit('maintain/SET_TREE_CACHE', res2)
+        this.$store.commit('maintain/SET_TITLE_LIST', [])
+        // this.tree = res2
+        // this._treeCache = res2
+        // this.titleList = []
         this.$toast.clear()
       }).catch(err => {
         this.$toast.clear()
       })
     },
     selectService(series) {
-      this.step = 2
-      this.series = series
-      this.brandList = []
+      // this.step = 2
+      // this.series = series
+      this.$store.commit('maintain/SET_STEP', 2)
+      this.$store.commit('maintain/SET_SERIES', series)
+      this.$store.commit('maintain/SET_BRAND_LIST', [])
+      // this.brandList = []
       queryBrand({
         series: series
       }).then(res => {
-        this.brandList = res
+        this.$store.commit('maintain/SET_BRAND_LIST', res)
+        // this.brandList = res
       })
     },
     selectBrand(brand) {
-      this.step = 3
-      this.brand = brand
-      this.carModelList = []
+      // this.step = 3
+      this.$store.commit('maintain/SET_STEP', 3)
+      this.$store.commit('maintain/SET_BRAND', brand)
+      this.$store.commit('maintain/SET_MODEL_LIST', [])
+      // this.brand = brand
+      // this.carModelList = []
       queryCarModel({
         brand: brand,
         series: this.series
       }).then(res => {
-        this.carModelList = res
+        this.$store.commit('maintain/SET_MODEL_LIST', res)
+        // this.carModelList = res
       })
     },
     selectCarModel(carModel) {
-      this.step = 4
-      this.carModel = carModel
-      this.productionYearList = []
+      // this.step = 4
+      this.$store.commit('maintain/SET_STEP', 4)
+      this.$store.commit('maintain/SET_MODEL', carModel)
+      this.$store.commit('maintain/SET_TIME_LIST', [])
+      // this.carModel = carModel
+      // this.productionYearList = []
       queryProductionYear({
         carModel: carModel,
         brand: this.brand,
         series: this.series
       }).then(res => {
-        this.productionYearList = res
+        this.$store.commit('maintain/SET_TIME_LIST', res)
+        // this.productionYearList = res
       })
     },
     selectProductionyear(productionYear) {
-      this.step = 5
-      this.displacementList = []
-      this.productionYear = productionYear
+      // this.step = 5
+      this.$store.commit('maintain/SET_STEP', 5)
+      this.$store.commit('maintain/SET_TIME', productionYear)
+      this.$store.commit('maintain/SET_DISPLACEMENT_LIST', [])
+      // this.displacementList = []
+      // this.productionYear = productionYear
       queryDisplacement({
         productionYear: productionYear,
         carModel: this.carModel,
         brand: this.brand,
         series: this.series
       }).then(res => {
-        this.displacementList = res
+        this.$store.commit('maintain/SET_DISPLACEMENT_LIST', res)
+        // this.displacementList = res
       })
     },
     selectDisplacement(displacement) {
-      this.step = 6
-      this.displacementList = []
-      this.displacement = displacement
+      // this.step = 6
+      this.$store.commit('maintain/SET_STEP', 6)
+      this.$store.commit('maintain/SET_DISPLACEMENT', displacement)
+      this.$store.commit('maintain/SET_ENGINEMODEL_LIST', [])
+      // this.displacementList = []
+      // this.displacement = displacement
       queryEngineModel({
         displacement: displacement,
         productionYear: this.productionYear,
@@ -238,11 +286,13 @@ export default {
         brand: this.brand,
         series: this.series
       }).then(res => {
-        this.engineModelList = res
+        this.$store.commit('maintain/SET_ENGINEMODEL_LIST', res)
+        // this.engineModelList = res
       })
     },
     selectEngineModel(engineModel) {
-      this.engineModel = engineModel
+      this.$store.commit('maintain/SET_ENGINEMODEL', engineModel)
+      // this.engineModel = engineModel
       this.$toast.loading({
         duration: 0,
         forbidClick: true,
@@ -257,15 +307,20 @@ export default {
         series: this.series
       }).then(res => {
         this.show = false
-        this.typeList = res.typeList
-        this.carId = res.carId
+        this.$store.commit('maintain/SET_TYPE_LIST', res.typeList)
+        this.$store.commit('maintain/SET_CARID', res.carId)
+        // this.typeList = res.typeList
+        // this.carId = res.carId
         queryTree({
           type: res.typeList[0],
           carId: res.carId
         }).then(res2 => {
-          this.titleList = []
-          this.tree = res2
-          this._treeCache = res2
+          this.$store.commit('maintain/SET_TREE', res2)
+          this.$store.commit('maintain/SET_TREE_CACHE', res2)
+          this.$store.commit('maintain/SET_TITLE_LIST', [])
+          // this.titleList = []
+          // this.tree = res2
+          // this._treeCache = res2
           this.$toast.clear()
         })
       }, error => {
@@ -274,12 +329,13 @@ export default {
       })
     },
     showPopup() {
-      this.step = 1
+      this.$store.commit('maintain/SET_STEP', 1)
       this.show = true
     },
     querySeries() {
       querySeries().then(res => {
-        this.serviceList = res
+        this.$store.commit('maintain/SET_SERIES_LIST', res)
+        // this.serviceList = res
       })
     }
   }
