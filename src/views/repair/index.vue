@@ -12,7 +12,6 @@
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
-        class="vin-search-list"
         @load="onLoad"
       >
         <div v-for="item in list" :key="item.id" class="con-block" @click="$router.push('/repair/detail/'+item.id)">

@@ -8,7 +8,10 @@
         <van-button round size="small" @click.stop="checkError('')">纠错</van-button>
       </div>
       <div v-else>
-        <van-search placeholder="请输入17位车架号查询" :value="vin" @focus="$router.push('/vin/'+vin)" />
+        <van-search placeholder="请输入17位车架号查询"
+                    class="van-search-border"
+                    shape="round"
+                    :value="vin" @focus="$router.push('/vin/'+vin)" />
         <div class="search-res-length">共{{ vinSearchResult.length }}条查询结果</div>
         <div class="search-res-list">
           <div v-for="item in vinSearchResult" :key="item.carmodelId" class="search-res-list-item" @click="$router.push({path:'/parts/' + item.groupId,query:{carmodelId:item.carmodelId,vin}})">

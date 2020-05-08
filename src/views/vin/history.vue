@@ -3,6 +3,7 @@
     <NavBar />
     <van-search
       v-model="value"
+      shape="round"
       class="van-search-b"
       placeholder="请输入车型信息"
       @search="searchCarModel"

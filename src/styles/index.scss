@@ -84,6 +84,12 @@ html,body,.mainCon{
     width: 50%;
   }
 }
+.van-search-border{
+  .van-search__content--round{
+    border: 1px solid #1989fa;
+    background-color: #fff;
+  }
+}
 .list-default{
   font-size:14px;
   font-weight:400;
@@ -194,10 +200,12 @@ html,body,.mainCon{
 }
 .me{
   .me-header{
+    height: 100px;
     background:rgba(70,177,248,1);
     position: relative;
     padding: 20px 20px;
     display: flex;
+    border-radius: 0 0 10% 10%;
     .me-header-img{
       width: 60px;
       height: 60px;
@@ -211,7 +219,11 @@ html,body,.mainCon{
     }
   }
   .me-body{
-    margin-top: 10px;
-
+    margin-top: -40px;
+    padding: 0 20px;
+    .van-cell-group{
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 }

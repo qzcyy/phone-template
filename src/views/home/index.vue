@@ -12,8 +12,11 @@
           <van-swipe-item><img src="../../assets/zy4.png" alt=""></van-swipe-item>
         </van-swipe>
       </div>
-      <div class="main-grid mt5">
-        <van-search placeholder="请输入17位车架号查询" @focus="$router.push('/vin')" />
+      <div class="main-grid mt10">
+        <van-search placeholder="请输入17位车架号查询"
+                    class="van-search-border"
+                    shape="round"
+                    @focus="$router.push('/vin')" />
         <van-grid :border="false" center square>
           <van-grid-item
             v-for="(item,index) in gridList"

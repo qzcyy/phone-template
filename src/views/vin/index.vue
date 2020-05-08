@@ -4,6 +4,7 @@
       <van-search
         v-model="value"
         class="van-search-b"
+        shape="round"
         show-action
         placeholder="请输17位车架号查询"
         @search="onSearch"
