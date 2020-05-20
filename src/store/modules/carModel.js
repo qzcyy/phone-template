@@ -1,4 +1,4 @@
-import { queryCarModel, queryCarBrandList, queryHotBrandsForErp, queryCarFactoryList, queryCarSeries } from '@/api/carModel'
+import { queryCarModel, queryCarModelGroupPackage } from '@/api/carModel'
 import { Toast } from 'vant'
 
 const state = {
@@ -13,6 +13,9 @@ const state = {
   selectedCarSeries: '',
   selectedCarModel: '',
   selectedCarGroup: '',
+  selectedDisplacement: '',
+  displacement: [],
+  carGroupList: [],
   firstcomponentcode: '',
   secondcomponentcode: ''
 }
@@ -59,12 +62,7 @@ const mutations = {
     state.carSeriesList = []
   },
   SET_CAR_FACTORY_LIST: (state, value) => {
-    state.carFactoryList = value.map(item => {
-      return {
-        text: item.manufactor,
-        value: item.manufactor
-      }
-    })
+    state.carFactoryList = value
   },
   SET_CAR_SERIES_LIST: (state, value) => {
     state.carSeriesList = value.map(item => {
@@ -74,28 +72,31 @@ const mutations = {
       }
     })
   },
-  SELECTED_FACTORY_FIRST: (state, value) => {
-    state.selectedCarFactory = state.carFactoryList[0].value
-  },
   SET_CAR_FACTORY: (state, value) => {
     state.selectedCarFactory = value
+  },
+  SET_CAR_DEPARTMENT: (state, value) => {
+    state.selectedDisplacement = value
+  },
+  SET_CAR_DEPARTMENT_LIST: (state, value) => {
+    state.displacement = value
+  },
+  CLEAN_CAR_DEPARTMENT: (state, value) => {
+    state.displacement = []
+    state.selectedDisplacement = ''
+  },
+  SET_CAR_GROUP_LIST: (state, value) => {
+    state.carGroupList = value
+  },
+  CLEAN_SET_CAR_GROUP: (state, value) => {
+    state.carGroupList = []
+    state.selectedCarGroup = ''
   },
   RESET_CARBRAND_LIST: (state) => {
     state.carBrandList = []
     state.initialsList = []
   },
-  SET_HOT_CARBRAND_LIST: (state, list) => {
-    state.carBrandList.unshift({
-      '首字母': '热',
-      '品牌列表': list.map(item => {
-        return {
-          brand: item.name,
-          logo: item.logo
-        }
-      })
-    })
-    state.initialsList.unshift('热')
-  },
+
   SET_USER_NAME: (state, name) => {
     state.name = name
   }
@@ -103,11 +104,10 @@ const mutations = {
 
 const actions = {
   async queryCarBrandList({ commit }) {
-    const response = await queryCarBrandList()
-    const hotResponse = await queryHotBrandsForErp()
+    const response = await queryCarModelGroupPackage()
     commit('RESET_CARBRAND_LIST')
-    commit('SET_CARBRAND_LIST', response)
-    commit('SET_HOT_CARBRAND_LIST', hotResponse)
+    commit('SET_CARBRAND_LIST', response.brands)
+    // commit('SET_HOT_CARBRAND_LIST', hotResponse)
   },
   async queryCarFactoryList({ commit, state }, params) {
     Toast.loading({
@@ -115,17 +115,17 @@ const actions = {
       forbidClick: true,
       message: '加载中'
     })
-    const response = await queryCarFactoryList(params)
+    const response = await queryCarModelGroupPackage(params)
     Toast.clear()
-    commit('SET_CAR_FACTORY_LIST', response)
+    commit('SET_CAR_FACTORY_LIST', response.carSeriesList)
   },
-  async queryCarSeriesList({ commit, state }, params) {
-    const response = await queryCarSeries({
-      brand: state.selectedCarBrand.brand,
-      carFactory: state.selectedCarFactory,
-      ...params
-    })
-    commit('SET_CAR_SERIES_LIST', response)
+  async queryDisplacement({ commit, state }, params) {
+    const response = await queryCarModelGroupPackage(params)
+    commit('SET_CAR_DEPARTMENT_LIST', response.displacementList)
+  },
+  async queryCarModelGroup({ commit, state }, params) {
+    const response = await queryCarModelGroupPackage(params)
+    commit('SET_CAR_GROUP_LIST', response.carGroupList)
   },
   async queryCarModelList({ commit, state }, params) {
     const response = await queryCarModel({

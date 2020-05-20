@@ -2,19 +2,14 @@
   <div>
     <h3 class="carModel-nav-title">
       <img :src="selectedCarBrand.logo" class="carModel-nav-title-img" @click="$emit('changeStep', 1)">
-      <span class="carModel-nav-title-msg">{{ selectedCarBrand.brand }}</span>
+      <span class="carModel-nav-title-msg">{{ selectedCarBrand.brand }} {{ selectedCarSeries }}</span>
     </h3>
-    <van-dropdown-menu>
-      <van-dropdown-item :value="selectedCarFactory" :options="carFactoryList" :title="selectedCarFactory||'选择车厂'" @change="changeFactory" />
-      <van-dropdown-item :value="selectedCarSeries" :options="carSeriesList" :title="selectedCarSeries||'选择车系'" @change="changeSeries" />
-    </van-dropdown-menu>
     <van-list
       v-model="loading"
-      class="carModel-list"
       :finished="finished"
       finished-text="没有更多了"
     >
-      <van-cell v-for="item in carModelList" :key="item.carModel" :title="item.carModel" class="van-ellipsis" @click="selectCarModel(item.carModel)" />
+      <van-cell v-for="item in displacement" :key="item" :title="item" class="van-ellipsis" @click="selectDisplacement(item)" />
     </van-list>
   </div>
 </template>
@@ -23,10 +18,8 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      value1: '',
-      value2: '选择车系',
       loading: false,
-      finished: false,
+      finished: true,
       option2: [
         { text: '默认排序', value: 'a' },
         { text: '好评排序', value: 'b' },
@@ -34,48 +27,21 @@ export default {
       ]
     }
   },
-  watch: {
-    selectedCarFactory(value) {
-      value ? this.queryCarModel() : void (0)
-    },
-    selectedCarSeries(value) {
-      value ? this.queryCarModel() : void (0)
-    }
-  },
   computed: {
     ...mapState({
-      carFactoryList: state => state.carModel.carFactoryList,
-      carSeriesList: state => state.carModel.carSeriesList,
-      carModelList: state => state.carModel.carModelList,
+      displacement: state => state.carModel.displacement,
       selectedCarBrand: state => state.carModel.selectedCarBrand,
       selectedCarFactory: state => state.carModel.selectedCarFactory,
       selectedCarSeries: state => state.carModel.selectedCarSeries
     })
   },
   methods: {
-    selectCarModel(value) {
-      this.$store.commit('carModel/SET_MODEL', value)
-      this.$emit('changeStep', 3)
-    },
-    changeFactory(value) {
-      this.$store.commit('carModel/SET_FACTORY', value)
-      this.$store.commit('carModel/CLEAN_SERIES')
-      this.$store.dispatch('carModel/queryCarSeriesList')
-      this.$store.commit('carModel/CLEAN_MODEL')
-    },
-    changeSeries(value) {
-      this.$store.commit('carModel/SET_SERIES', value)
-      this.$store.commit('carModel/CLEAN_MODEL')
-    },
-    queryCarModel() {
-      this.loading = true
-      this.finished = false
-      this.$store.dispatch('carModel/queryCarModelList').then(() => {
-        this.loading = false
-        this.finished = true
-      }, err => {
-        this.loading = false
+    selectDisplacement(value) {
+      this.$store.commit('carModel/SET_CAR_DEPARTMENT', value)
+      this.$store.commit('carModel/CLEAN_SET_CAR_GROUP')
+      this.$store.dispatch('carModel/queryCarModelGroup', { brand: this.selectedCarBrand.brand, manufactor: this.selectedCarFactory, carSeries: this.selectedCarSeries, displacement: value }).then(() => {
       })
+      this.$emit('changeStep', 3)
     }
   }
 }

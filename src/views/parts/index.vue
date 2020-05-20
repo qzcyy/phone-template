@@ -5,7 +5,7 @@
       <div class="parts-carMessage">
         <div class="parts-carMessage-line1">
           <img :src="detail.logo">
-          <h3>{{ detail.manufactor }} {{ detail.brand }} {{ detail.carModel }} {{ detail.modelYear }}款 {{ detail.salesName }}</h3>
+          <h3>{{ $route.query.name }}</h3>
         </div>
         <div v-if="$route.query.vin" class="parts-carMessage-line2">
           <span class="vin-icon">VIN</span>
@@ -19,7 +19,7 @@
         <a href="javascript:;" :class="{'selected':selectedTab===3}" @click="selectedTab=3">油液信息</a>
       </div>
       <div class="parts-info" :class="{'hasVin':$route.query.vin}">
-        <maintenance v-show="selectedTab===1" :carModelGroupDetail="detail"/>
+        <maintenance v-show="selectedTab===1" :car-model-group-detail="detail" />
         <transmission v-show="selectedTab===2" />
         <oil v-show="selectedTab===3" />
       </div>
