@@ -24,7 +24,7 @@ const router = new Router({
     },
     component: () => import('../views/vin/index.vue')
   }, {
-    path: '/vin/history',
+    path: '/vinHistory',
     name: 'vinHistory',
     meta: {
       title: 'VIN查询记录'

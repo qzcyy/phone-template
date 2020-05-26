@@ -8,8 +8,12 @@
       </div>
       <div class="me-body">
         <van-cell-group>
-          <van-cell title="我的纠错" is-link to="/checkError/me" />
-          <van-cell title="VIN查询记录" is-link to="/vin/history" />
+          <van-cell is-link to="/checkError/me" >
+            <span class="me-body-cell"><i class="icon-myError"></i>我的纠错</span>
+          </van-cell>
+          <van-cell  is-link to="/vinHistory" >
+            <span class="me-body-cell"><i class="icon-history"></i>VIN查询记录</span>
+          </van-cell>
         </van-cell-group>
         <van-cell-group class="mt10">
           <van-cell style="color: #F03B3B;text-align: center"  title="退出登录" @click="logout" />

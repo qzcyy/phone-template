@@ -48,3 +48,7 @@ export function queryOilInfoByGroupID(params = {}) {
 export function queryCarModelGroupPackage(params = {}) {
   return fetchPost('/matching/queryCarModelGroupPackage', params)
 }
+// 查询车型详情-陈士荣
+export function queryCarmodelBynLevelID(params = {}) {
+  return fetchPost('/matching/queryCarmodelBynLevelID', params)
+}

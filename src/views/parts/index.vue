@@ -10,7 +10,7 @@
         <div v-if="$route.query.vin" class="parts-carMessage-line2">
           <span class="vin-icon">VIN</span>
           <span class="vin-line">{{ $route.query.vin }}</span>
-          <van-button class="parts-carMessage-line2-btn1" round plain hairline type="info" size="small" @click.stop="$router.push('/carModel/detail/'+$route.query.carmodelId)">车辆详情</van-button>
+          <van-button class="parts-carMessage-line2-btn1" round plain hairline type="info" size="small" @click.stop="toDetail()">车辆详情</van-button>
         </div>
       </div>
       <div class="parts-search">
@@ -24,11 +24,22 @@
         <oil v-show="selectedTab===3" />
       </div>
     </div>
+    <van-popup v-model="show" style="background: transparent">
+      <div class="searchGroup">
+        <div class="searchGroup-title">
+          请选择车型
+        </div>
+        <div class="searchGroup-info">
+          <van-cell v-for="item in groupList" is-link @click="$router.push('/carModel/detail/'+item.nLevelIDs)">{{ item.value }}</van-cell>
+        </div>
+      </div>
+    </van-popup>
   </div>
 
 </template>
 <script>
 import { queryCarModelGroupDetail } from '@/api/carModel'
+import { querySecondCarGroupListByIds } from '@/api/vin'
 import maintenance from './components/maintenance.vue'
 import transmission from './components/transmission.vue'
 import oil from './components/oil.vue'
@@ -49,14 +60,20 @@ export default {
   data() {
     return {
       detail: {},
-      selectedTab: 1
+      selectedTab: 1,
+      groupList: [],
+      show: false
     }
   },
   mounted() {
     this.getDetail()
   },
   methods: {
+    toDetail() {
+      this.show = true
+    },
     getDetail() {
+      this.groupList = []
       this.$toast.loading({
         duration: 0, // 持续展示 toast
         forbidClick: true,
@@ -68,6 +85,14 @@ export default {
         this.detail = res
         this.$toast.clear()
       })
+      if (this.$route.query.nLevelIDs && this.$route.query.vin) {
+        querySecondCarGroupListByIds({
+          ids: this.$route.params.id,
+          nLevelIDs: this.$route.query.nLevelIDs
+        }).then(res => {
+          this.groupList = res
+        })
+      }
     }
   }
 }

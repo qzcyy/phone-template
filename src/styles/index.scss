@@ -225,5 +225,47 @@ html,body,.mainCon{
       border-radius: 10px;
       overflow: hidden;
     }
+    .me-body-cell{
+      position: relative;
+      padding-left: 26px;
+    }
+    .icon-myError{
+      width: 20px;
+      height: 20px;
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0;
+      background: url("../assets/my_icon_jiuc.png") no-repeat;
+      background-size: contain;
+    }
+    .icon-history{
+      width: 20px;
+      height: 20px;
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0;
+      background: url("../assets/my_icon_history.png") no-repeat;
+      background-size: contain;
+    }
+  }
+}
+.searchGroup{
+  width: 319px;
+  background-color: white;
+  border-radius:12px 12px 0 0;
+  .searchGroup-title{
+    height:59px;
+    background:rgba(63,144,247,1);
+    line-height: 59px;
+    padding-left: 10px;
+    font-size:14px;
+    color:rgba(255,255,255,1);
+    border-radius:12px 12px 0 0;
+  }
+  .searchGroup-info{
+    padding-bottom: 50px;
+    background-color: #fff;
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="mainCon">
     <NavBar :on-click-left="()=>$router.push('/home')">
-      <!--<van-icon v-show="step===3" slot="right" name="filter-o" size="20" @click="$refs.step3.showDicSearch=true" />-->
+      <span v-show="step!==1" slot="right" style="color: #1989fa" name="filter-o" size="20" @click="changeStep(step-1)">上一步</span>
     </NavBar>
     <div class="carModel innerCon">
       <selectCarModelStep1 v-show="step===1" @changeStep="changeStep" />

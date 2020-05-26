@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import { queryCarModelDetail } from '@/api/carModel'
+import { queryCarmodelBynLevelID } from '@/api/carModel'
 
 export default {
   data() {
@@ -57,8 +57,8 @@ export default {
         forbidClick: true,
         message: '加载中'
       })
-      queryCarModelDetail({
-        id: this.$route.params.id
+      queryCarmodelBynLevelID({
+        nLevelIDs: this.$route.params.id
       }).then(res => {
         this.detail = res
         this.$toast.clear()

@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import { queryVinScanningList, saveVinScanning, queryCarModelByVin } from '@/api/vin.js'
+import { queryVinScanningList, saveVinScanning, queryCarModelByVin, queryCarModelGroupByVinAggregation } from '@/api/vin.js'
 import '../../styles/vin.scss'
 import { Toast } from 'vant'
 
@@ -73,8 +73,9 @@ export default {
         forbidClick: true,
         message: '查询中...'
       })
-      queryCarModelByVin({
-        vin: val
+      queryCarModelGroupByVinAggregation({
+        vin: val,
+        type: 2
       }).then(res => {
         this.$store.commit('carModel/SET_FIRST_COMPONENT_CODE', '')
         this.$store.commit('carModel/SET_SECOND_COMPONENT_CODE', '')
@@ -85,11 +86,11 @@ export default {
           vin: val,
           carGroup: JSON.stringify(res)
         })
-        if (res.length === 1) {
-          this.$router.push('/parts/' + res[0].groupId)
-        } else {
+        // if (res.length === 1) {-
+          // this.$router.push('/parts/' + res[0].ids + '?name=' + res[0].title + '&vin=' + val + '&nLevelIDs=' + res[0].nLevelIDs)
+        // } else {
           this.$router.push('/vinSearch/' + val)
-        }
+        // }
       }, err => {
         this.$toast.clear()
       })

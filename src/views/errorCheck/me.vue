@@ -18,7 +18,7 @@
           finished-text="没有更多了"
           @load="onLoad"
         >
-          <div v-for="item in list" :key="item.id" class="con-block" :class="{'looked':Number(item.islook)===1}" @click="$router.push('/checkError/detail/'+item.id)">
+          <div v-for="item in list" :key="item.id" class="con-block" :class="{'looked':Number(item.islook)!==1}" @click="$router.push('/checkError/detail/'+item.id)">
             <div class="title-2">{{ item.errorCorrectionType }}</div>
             <div class="info-2 mt10">{{ item.submitTime }}</div>
             <div class="arrow-r">
