@@ -53,7 +53,7 @@
             <van-icon class="errorCheck-icon" :name="require('../../../assets/icon_mis.png')" size="16" @click.stop="checkError(item)" />
             <span>{{ item.specificationModel }} | {{ item.factoryNumber }}</span>
             <span>备注：{{ item.modelRemark||'--' }}</span>
-            <span>车型备注：{{ item.remark||'--' }}</span>
+            <!--<span>车型备注：{{ item.remark||'&#45;&#45;' }}</span>-->
           </div>
         </div>
       </van-list>

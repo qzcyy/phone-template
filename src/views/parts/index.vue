@@ -70,7 +70,11 @@ export default {
   },
   methods: {
     toDetail() {
-      this.show = true
+      if (this.groupList.length === 1) {
+        this.$router.push('/carModel/detail/' + this.groupList[0].nLevelIDs)
+      } else {
+        this.show = true
+      }
     },
     getDetail() {
       this.groupList = []

@@ -70,6 +70,9 @@ export default {
       }).then(res => {
         this.show = true
         this.groupList = res
+        if (res.length === 1) {
+          this.$router.push('/carModel/detail/' + res[0].nLevelIDs)
+        }
         this.$toast.clear()
       })
     },

@@ -20,8 +20,11 @@
       class="vin-search-list"
       @load="onLoad"
     >
-      <van-cell v-for="item in searchList" :key="item.id" @click="listSearch(item.vin)">
-        <span slot="title" style="width: 100%">{{ item.vin }}</span>
+      <van-cell v-for="item in searchList" :key="item.id" @click="listSearch(item.vin)" class="van-ellipsis">
+        <div class="van-ellipsis">
+          <span slot="title" class="van-ellipsis" style="width: 100%;display: block">{{ JSON.parse(item.carGroup)[0].title }}</span>
+          <span slot="title" style="width: 100%;font-size: 12px;border:1px solid rgba(221,221,221,1);color:rgba(153,153,153,1);padding: 0 2px;">{{ item.vin }}</span>
+        </div>
         <van-icon
           slot="right-icon"
           name="search"
