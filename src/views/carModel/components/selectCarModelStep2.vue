@@ -18,8 +18,8 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      loading: false,
-      finished: true,
+      // loading: false,
+      // finished: true,
       option2: [
         { text: '默认排序', value: 'a' },
         { text: '好评排序', value: 'b' },
@@ -32,7 +32,9 @@ export default {
       displacement: state => state.carModel.displacement,
       selectedCarBrand: state => state.carModel.selectedCarBrand,
       selectedCarFactory: state => state.carModel.selectedCarFactory,
-      selectedCarSeries: state => state.carModel.selectedCarSeries
+      selectedCarSeries: state => state.carModel.selectedCarSeries,
+      finished: state => state.carModel.finished,
+      loading: state => state.carModel.loading
     })
   },
   methods: {

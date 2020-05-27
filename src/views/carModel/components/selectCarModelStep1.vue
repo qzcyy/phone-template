@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-search placeholder="请输入17位车架号查询" @focus="$router.push('/vin')" />
+    <!--<van-search placeholder="请输入17位车架号查询" @focus="$router.push('/vin')" />-->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <div class="carModel-select">
         <van-index-bar :index-list="initialsList" highlight-color="#3F90F7">

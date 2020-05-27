@@ -16,7 +16,7 @@
       <div class="parts-search">
         <a href="javascript:;" :class="{'selected':selectedTab===1}" @click="selectedTab=1">保养件</a>
         <a href="javascript:;" :class="{'selected':selectedTab===2}" @click="selectedTab=2">变速箱</a>
-        <a href="javascript:;" :class="{'selected':selectedTab===3}" @click="selectedTab=3">油液信息</a>
+        <!--<a href="javascript:;" :class="{'selected':selectedTab===3}" @click="selectedTab=3">油液信息</a>-->
       </div>
       <div class="parts-info" :class="{'hasVin':$route.query.vin}">
         <maintenance v-show="selectedTab===1" :car-model-group-detail="detail" />

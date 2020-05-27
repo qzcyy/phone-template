@@ -2,7 +2,6 @@
   <div class="mainCon">
     <NavBar>
       <div slot="right">
-        <van-icon class="mr10" :name="require('../../assets/icon_mis.png')" size="24" @click="errorCheck" />
         <van-icon :name="require('../../assets/icon_home_line_balck.png')" size="24" @click="$router.push('/home')" />
       </div>
     </NavBar>

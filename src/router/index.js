@@ -17,12 +17,13 @@ const router = new Router({
     component: () => import('../views/home/index.vue')
   },
   {
-    path: '/vin/:vin?',
+    path: '/vin',
     name: 'vin',
     meta: {
+      title: 'VIN查询',
       showTabbar: true
     },
-    component: () => import('../views/vin/index.vue')
+    component: () => import('../views/vin/searchResult.vue')
   }, {
     path: '/vinHistory',
     name: 'vinHistory',
@@ -63,93 +64,20 @@ const router = new Router({
     component: () => import('../views/parts/index.vue')
   },
   {
+    path: '/partsList',
+    name: 'partsList',
+    meta: {
+      title: '配件列表'
+    },
+    component: () => import('../views/parts/list.vue')
+  },
+  {
     path: '/parts/detail/:partId',
     name: 'partsDetail',
     meta: {
       title: '配件详情'
     },
     component: () => import('../views/parts/detail.vue')
-  },
-  {
-    path: '/serviceManual',
-    name: 'serviceManual',
-    meta: {
-      title: '维修手册'
-    },
-    component: () => import('../views/serviceManual/index.vue')
-  },
-  {
-    path: '/pdf/:id',
-    name: 'pdf',
-    meta: {
-      title: '资料详情'
-    },
-    component: () => import('../views/pdf/detail.vue')
-  },
-  {
-    path: '/maintain',
-    name: 'maintain',
-    meta: {
-      title: '正时及保养'
-    },
-    component: () => import('../views/maintain/index.vue')
-  },
-  {
-    path: '/repair',
-    name: 'repair',
-    meta: {
-      title: '维修案例'
-    },
-    component: () => import('../views/repair/index.vue')
-  },
-  {
-    path: '/repair/detail/:id',
-    name: 'repairDetail',
-    meta: {
-      title: '案例详情'
-    },
-    component: () => import('../views/repair/detail.vue')
-  },
-  {
-    path: '/checkError',
-    name: 'checkError',
-    meta: {
-      title: '纠错'
-    },
-    component: () => import('../views/errorCheck/index.vue')
-  },
-  {
-    path: '/checkError/me',
-    name: 'myCheckError',
-    meta: {
-      title: '我的纠错'
-    },
-    component: () => import('../views/errorCheck/me.vue')
-  },
-  {
-    path: '/checkError/detail/:id',
-    name: 'checkErrorDetail',
-    meta: {
-      title: '纠错详情'
-    },
-    component: () => import('../views/errorCheck/detail.vue')
-  },
-  {
-    path: '/me',
-    name: 'me',
-    meta: {
-      title: '我的',
-      showTabbar: true
-    },
-    component: () => import('../views/home/me.vue')
-  },
-  {
-    path: '/login',
-    name: 'login',
-    meta: {
-      title: '登录'
-    },
-    component: () => import('../views/login/index.vue')
   }]
 })
 
