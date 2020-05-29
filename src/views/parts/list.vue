@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <form action="/">
       <van-search
         v-model="value"
@@ -7,92 +7,62 @@
         shape="round"
         show-action
         placeholder="名称、规格、出厂编码、车型、品牌"
-        @search="onSearch"
+        @search="onLoad"
       >
         <div slot="action" @click="onCancel">取消</div>
       </van-search>
     </form>
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      class="vin-search-list"
-      @load="onLoad"
-    >
-      <van-cell v-for="item in searchList" :key="item.id" @click="listSearch(item.vin)">
-        <span slot="title" style="width: 100%">{{ item.vin }}</span>
-        <van-icon
-          slot="right-icon"
-          name="search"
-          style="line-height: inherit;"
-        />
-      </van-cell>
-    </van-list>
+    <div class="maintenance" style="height: calc(100% - 58px)">
+      <div class="maintenance-list" style="height: 100%">
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          class="maintenance-list-wrapper"
+          style="height: 100%"
+          :immediate-check="false"
+          @load="onLoad"
+        >
+          <div v-for="item in list" :key="item.id" class="maintenance-item" @click="goDetail(item)">
+            <img :src="item.imgs.split(',')[0] || require('../../assets/pic_def_bj.png')" alt="图片加载失败">
+            <div class="right-box">
+              <div class="title-4 van-ellipsis" style="padding: 12px 3px 10px 3px">{{ item.brand }} {{ item.name }}</div>
+              <span style="padding: 3px 3px 10px 3px">{{ item.specificationModel }} | {{ item.factoryNumber }}</span>
+              <!--<span>备注：{{ item.modelRemark||'&#45;&#45;' }}</span>-->
+            </div>
+          </div>
+        </van-list>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import { queryVinScanningList, saveVinScanning, queryCarModelByVin, queryCarModelGroupByVinAggregation } from '@/api/vin.js'
+import { queryPartsList } from '@/api/parts.js'
 import '../../styles/vin.scss'
+import '@/styles/parts.scss'
 import { Toast } from 'vant'
 
 export default {
   data() {
     return {
       value: '',
+      value1: '',
       list: [],
       loading: false,
       finished: false,
       searchQuery: {
-        pageIndex: 1,
-        pageSize: 10
+        page: 1,
+        limit: 10
       }
     }
-  },
-  computed: {
-    searchList() {
-      if (this.value) {
-        return this.list.filter(item => item.vin.indexOf(this.value) !== -1)
-      } else {
-        return this.list
-      }
-    }
-  },
-  mounted() {
-    this.onLoad()
-    this.value = this.$route.params.vin
   },
   methods: {
+    goDetail(item) {
+      this.$router.push('/parts/detail/' + item.id)
+    },
     listSearch(val) {
       this.value = val
       this.onSearch(val)
-    },
-    onSearch(val) {
-      this.$toast.loading({
-        duration: 0,
-        forbidClick: true,
-        message: '查询中...'
-      })
-      queryCarModelGroupByVinAggregation({
-        vin: val,
-        type: 2
-      }).then(res => {
-        this.$store.commit('carModel/SET_FIRST_COMPONENT_CODE', '')
-        this.$store.commit('carModel/SET_SECOND_COMPONENT_CODE', '')
-        this.$store.commit('vin/SET_VIN_SEARCH', res)
-        this.$store.commit('vin/SET_VIN', val)
-        this.$toast.clear()
-        saveVinScanning({
-          vin: val,
-          carGroup: JSON.stringify(res)
-        })
-        // if (res.length === 1) {-
-          // this.$router.push('/parts/' + res[0].ids + '?name=' + res[0].title + '&vin=' + val + '&nLevelIDs=' + res[0].nLevelIDs)
-        // } else {
-          this.$router.push('/vinSearch/' + val)
-        // }
-      }, err => {
-        this.$toast.clear()
-      })
     },
     onCancel() {
       // this.$router.go(-1)
@@ -100,11 +70,20 @@ export default {
     },
     onLoad(val) {
       this.loading = true
-      queryVinScanningList(this.searchQuery).then(res => {
+      if (this.value !== this.value1) {
+        this.list = []
+        this.searchQuery.page = 1
+      }
+      queryPartsList(
+        {
+          ...this.searchQuery,
+          name: this.value
+        }).then(res => {
         this.loading = false
-        this.list = this.list.concat(res.list)
-        this.searchQuery.pageIndex++
-        if (res.list.length < this.searchQuery.pageSize) {
+        this.list = this.list.concat(res)
+        this.value1 = this.value
+        this.searchQuery.page++
+        if (res.length < this.searchQuery.limit) {
           this.finished = true
         }
       })

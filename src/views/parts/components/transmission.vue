@@ -4,12 +4,6 @@
       <span class="transmission-list-item-key">变速箱/档位</span>
       <div class="transmission-list-item-value">{{ detail.carmodelGroupGearbox&&detail.carmodelGroupGearbox.transmissionDescription }} / {{ detail.carmodelGroupGearbox&&detail.carmodelGroupGearbox.gearsNum }}</div>
     </div>
-    <div class="transmission-list-item van-clearfix">
-      <span class="transmission-list-item-key">型号/厂家</span>
-      <div class="transmission-list-item-value">
-        {{ detail.carmodelGroupGearbox&&detail.carmodelGroupGearbox.carmodelGroupGearbox ||'--' }} / {{ detail.carmodelGroupGearbox&&detail.carmodelGroupGearbox.manufactor||'--' }}
-      </div>
-    </div>
     <div v-for="item in detail.parts" :key="item.name" class="transmission-list-item van-clearfix">
       <span class="transmission-list-item-key">{{ item.name }}</span>
       <div class="transmission-list-item-value">

@@ -1,4 +1,4 @@
-import { fetchPost, fetchGet } from '@/utils/request'
+import { fetchPost } from '@/utils/request'
 
 // 首页部件列表
 export function queryComponentListForPCApp(params = {}) {

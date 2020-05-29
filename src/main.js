@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import router from './router'
 import store from './store'
+import { getHashQuery } from './utils/signature'
+const BASE_URL = process.env.VUE_APP_BASE_API
 
 import App from './App.vue'
 import 'vant/lib/index.css'
@@ -19,6 +21,13 @@ Vue.prototype.$setgoindex = function() {
       window.location.href = location.href + '&goindex=true'
     }
   }
+}
+if (getHashQuery('openId')) {
+  const openId = getHashQuery('openId')
+  store.commit('SET_OPENID', openId)
+  localStorage.setItem('openId', openId)
+} else if (!store.getters.openId) {
+  location.href = BASE_URL + '/weChat/authorize'
 }
 new Vue({
   router,

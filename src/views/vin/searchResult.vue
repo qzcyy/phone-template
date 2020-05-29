@@ -12,7 +12,7 @@
           @search="onSearch"
         />
         <div class="search-res-list">
-          <div v-for="item in vinSearchResult" :key="item.ids" class="search-res-list-item" @click="$router.push({path:'/parts/' + item.ids,query:{name:item.title,nLevelIDs:item.nLevelIDs,vin}})">
+          <div v-for="item in vinSearchResult" :key="item.ids" class="search-res-list-item" @click="$router.push({path:'/parts/' + item.ids,query:{name:item.title,nLevelID:item.nLevelIDs,vin}})">
             <div class="search-res-list-item-title ">
               {{ item.title }}
             </div>
@@ -21,7 +21,7 @@
               <!--{{ item.salesName }}({{ item.productionYear }}-{{ item.discontinuationYear }})-->
             </div>
             <div class="search-res-list-item-btn">
-              <van-button round type="info" size="small" @click.stop="toDetail(item)">详情</van-button>
+              <!--<van-button round type="info" size="small" @click.stop="toDetail(item)">详情</van-button>-->
             </div>
           </div>
         </div>

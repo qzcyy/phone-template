@@ -38,7 +38,7 @@ export function queryCarModelGroupDetail(params = {}) {
 }
 // 查询车型组变速箱
 export function queryGearbox(params = {}) {
-  return fetchPost('/matching/queryGearbox', params)
+  return fetchPost('/partsByOpen/queryGearbox', params)
 }
 // 查询油液信息
 export function queryOilInfoByGroupID(params = {}) {
@@ -46,9 +46,9 @@ export function queryOilInfoByGroupID(params = {}) {
 }
 // 查询油液信息
 export function queryCarModelGroupPackage(params = {}) {
-  return fetchPost('/matching/queryCarModelGroupPackage', params)
+  return fetchPost('/matchingByOpen/queryCarModelGroupPackage', params)
 }
 // 查询车型详情-陈士荣
-export function queryCarmodelBynLevelID(params = {}) {
-  return fetchPost('/matching/queryCarmodelBynLevelID', params)
+export function queryCarModelBynLevelID(params = {}) {
+  return fetchPost('/matchingByOpen/queryCarModelBynLevelID', params)
 }

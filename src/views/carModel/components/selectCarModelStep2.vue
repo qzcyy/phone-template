@@ -9,7 +9,7 @@
       :finished="finished"
       finished-text="没有更多了"
     >
-      <van-cell v-for="item in displacement" :key="item" :title="item" class="van-ellipsis" @click="selectDisplacement(item)" />
+      <van-cell v-for="item in displacement" :key="item" :title="item" @click="selectDisplacement(item)" />
     </van-list>
   </div>
 </template>

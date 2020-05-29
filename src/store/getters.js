@@ -1,5 +1,5 @@
 const getters = {
-  userId: state => state.user.userId,
+  openId: state => state.user.openId,
   name: state => state.user.name
 }
 export default getters

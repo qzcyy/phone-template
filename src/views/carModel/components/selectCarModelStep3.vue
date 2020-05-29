@@ -9,7 +9,7 @@
       :finished="finished"
       finished-text="没有更多了"
     >
-      <van-cell v-for="item in carGroupList" :key="item.id" :title="item.title" class="van-ellipsis" @click="selectGroup(item)" />
+      <van-cell v-for="item in carGroupList" :key="item.id" :title="item.title" @click="selectGroup(item)" />
     </van-list>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
   methods: {
     selectGroup(value) {
       this.$store.commit('carModel/SET_GROUP', value)
-      this.$router.push('/parts/' + value.id + '?name=' + value.value)
+      this.$router.push('/parts/' + value.id + '?name=' + value.value + '&nLevelID=' + value.carModelInfo.nLevelID)
     }
   }
 }
